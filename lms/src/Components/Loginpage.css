@@ -5,8 +5,6 @@
 }
 
 .center-main-division {
-  border: 1px solid;
-
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -39,12 +37,16 @@ a {
 label {
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 19px; 
 }
+
 input {
   width: 100%;
   height: auto;
-  
+  padding: 10px 10px;
+  border: 1px solid #b7b3b3;
+  border-radius: 5px;
+  margin-top: 8px;  
 }
 
 button {
@@ -54,6 +56,15 @@ button {
   top: 618px;
 
   background: #ed7966;
+  color: #FFFFFF;
   border-radius: 5px;
   border: none;
+  margin-top: 15px;
+}
+
+.link-div {
+  border: solid 1px #b7b3b3;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }

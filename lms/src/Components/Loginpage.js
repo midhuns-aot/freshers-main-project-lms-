@@ -1,7 +1,6 @@
 import React from "react";
 import "./Loginpage.css";
 
-
 function Loginpage() {
   return (
     <div>
@@ -10,15 +9,19 @@ function Loginpage() {
         <div className="center-main-division">
           <h2>Login</h2>
           <p>Welcome back! Please enter your details.</p>
-          <div> <a href="adm">Admin</a> <a href="stu">Student</a></div>
-          <hr />
+          <div className="link-div">
+            <a href="adm">Admin</a> <a href="stu">Student</a>
+          </div>
+
           <form>
-            
-            <label htmlFor="Email">Email</label><br />
-            <input type="text" placeholder="Enter your email" /> <br />
+            <div>
+            <label htmlFor="Email">Email</label>
+            <br />
+            <input type="text" placeholder="Enter your email" /> <br /></div>
+            <div>
             <label htmlFor="Password">Password</label> <br />
-            <input type="text" placeholder="Enter your password"/> <br />
-            <button type="submit">login</button>
+            <input type="password" placeholder="Enter your password" /> <br /></div>
+            <button type="submit">Login</button>
           </form>
         </div>
       </div>
