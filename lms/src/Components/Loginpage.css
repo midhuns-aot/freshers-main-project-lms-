@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  padding: 5px;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -15,18 +15,18 @@
 }
 
 h2,
-label {
+p{
   color: #09174a;
 }
 h1 {
   color: #ed7966;
 }
 
-p {
+.welcome{
   color: #646464;
 }
 
-a {
+a{
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
@@ -34,10 +34,11 @@ a {
   color: #09174a;
 }
 
-label {
+p {
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px; 
+  line-height: 19px;
+  padding-top: 15px;
 }
 
 input {
@@ -46,7 +47,7 @@ input {
   padding: 10px 10px;
   border: 1px solid #b7b3b3;
   border-radius: 5px;
-  margin-top: 8px;  
+  margin-top: 10px;
 }
 
 button {
@@ -60,11 +61,18 @@ button {
   border-radius: 5px;
   border: none;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .link-div {
   border: solid 1px #b7b3b3;
+ 
   border-top: none;
   border-left: none;
   border-right: none;
+  padding-bottom: 15px;
+}
+
+.student{
+    padding-left: 80px;
 }
