@@ -15,23 +15,15 @@
 }
 
 h2,
-p{
+p {
   color: #09174a;
 }
 h1 {
   color: #ed7966;
 }
 
-.welcome{
+.welcome {
   color: #646464;
-}
-
-a{
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: #09174a;
 }
 
 p {
@@ -57,7 +49,7 @@ button {
   top: 618px;
 
   background: #ed7966;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 5px;
   border: none;
   margin-top: 15px;
@@ -66,13 +58,26 @@ button {
 
 .link-div {
   border: solid 1px #b7b3b3;
- 
+
   border-top: none;
   border-left: none;
   border-right: none;
   padding-bottom: 15px;
 }
 
-.student{
-    padding-left: 80px;
+.adm {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #09174a;
+}
+
+.student {
+  padding-left: 80px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #09174a;
 }
