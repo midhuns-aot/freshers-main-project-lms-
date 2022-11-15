@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container-students {
+  padding: 50px;
+}
+
+.header-of-students {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #09174a;
+}
+
+.table-responsive th {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #646464;
+}
+
+.table-responsive td {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #09174a;
+}
+.student-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+
+  width: 185px;
+  height: 40px;
+  left: 1191px;
+  top: 116px;
+
+  background: #ed7966;
+  border-radius: 5px;
+}
+
+.srch-cls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

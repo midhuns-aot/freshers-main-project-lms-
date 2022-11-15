@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container-Allbooks{
+    padding: 50px;
+  }
+  
+  .header-of-issuedbooks{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #09174a;
+  }
+  
+  .table-responsive th {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+  }
+  
+  .table-responsive td {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #09174a;
+  }
+  .addbook-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+
+    width: 162px;
+    height: 40px;
+    left: 1211px;
+    top: 116px;
+    
+    background: #ED7966 !important;
+    border: none !important;
+    border-radius: 5px;
+  }
+  
+  .srch-cls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+
+  
+/* CSS for Modals */
+
+.modal-buttons2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+
+  width: 119px;
+  height: 40px;
+  left: 906px;
+  top: 661px;
+
+  background: #ed7966 !important;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.modal-buttons1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+
+  width: 119px;
+  height: 40px;
+  left: 906px;
+  top: 661px;
+  border-radius: 5px;
+}
+
+
+.childrens-add-modal{
+  display: flex;
+  gap: 50px;
+}
+  

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Loginpage.css";
+import { useNavigate } from 'react-router-dom'
 
 function Loginpage() {
   const [details, setDetails] = useState({ email: "", password: "" });
   const adminUser = { email: "admin@gmail.com", password: "lll" };
   const [user, setUser] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
 
 
   const Login = (details) => {
@@ -14,6 +17,7 @@ function Loginpage() {
       details.password === adminUser.password
     ) {
       console.log("Logged in SucessFully");
+      navigate('/dashboard')
       
       setUser({
         email: details.email,
@@ -26,15 +30,15 @@ function Loginpage() {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    // navigate('/adminpage')
+    
     Login(details);
   };
   return (
     <div>
       <div className="container">
-        <h1>LMS</h1>
+         <h1> LMS</h1>
         <div className="center-main-division">
-          <h2>Login</h2>
+          <h3>Login</h3>
           <p className="welcome">Welcome back! Please enter your details.</p>
           <div className="link-div">
             <p>
@@ -46,7 +50,7 @@ function Loginpage() {
           </div>
 
           <form onSubmit={submitHandler}>
-            <p>
+            <p className="login-elements">
               Email
               <br />
               <input
@@ -59,7 +63,7 @@ function Loginpage() {
               />
               <br />
             </p>
-            <p>
+            <p className="login-elements">
               Password
               <br />
               <input

@@ -14,7 +14,7 @@
   gap: 10px;
 }
 
-h2,
+h3,
 p {
   color: #09174a;
 }
@@ -26,11 +26,11 @@ h1 {
   color: #646464;
 }
 
-p {
+.login-elements {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 input {
@@ -40,6 +40,7 @@ input {
   border: 1px solid #b7b3b3;
   border-radius: 5px;
   margin-top: 10px;
+  padding-top: 10px;
 }
 
 button {
