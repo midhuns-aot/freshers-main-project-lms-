@@ -5,6 +5,7 @@
 
 .container-students {
   padding: 50px;
+  width: 100%;
 }
 
 .header-of-students {
@@ -48,4 +49,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.issuedbook-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+
+ 
+  width: 185px;
+  height: 40px;
+  left: 1191px;
+  top: 116px;
+
+  background: #ed7966;
+  border-radius: 5px;
 }

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./Loginpage.css";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import logoo from '../../Images/Mainlogo-fill.png'
 
 function Loginpage() {
   const [details, setDetails] = useState({ email: "", password: "" });
   const adminUser = { email: "admin@gmail.com", password: "lll" };
-  const [user, setUser] = useState({ email: "", password: "" });
-
+  const [setUser] = useState({ email: "", password: "" });
+ 
+  
   const navigate = useNavigate();
 
 
@@ -17,7 +19,7 @@ function Loginpage() {
       details.password === adminUser.password
     ) {
       console.log("Logged in SucessFully");
-      navigate('/dashboard')
+      navigate('/isuuedbooks')
       
       setUser({
         email: details.email,
@@ -36,7 +38,10 @@ function Loginpage() {
   return (
     <div>
       <div className="container">
-         <h1> LMS</h1>
+        <div className="d-flex align-items-center gap-2 pt-4"> 
+         <img src=  {logoo} alt="logo" className="pb-2"/> 
+         <h1>  LMS</h1>
+         </div>
         <div className="center-main-division">
           <h3>Login</h3>
           <p className="welcome">Welcome back! Please enter your details.</p>

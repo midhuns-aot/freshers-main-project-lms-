@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Issuedbook.css";
 import Table from "react-bootstrap/Table";
 import ModalIssueBook from "./ModalForIssueBooks";
 import { MdAssignmentReturn } from "react-icons/md";
+import Dashboard from "../Dashboard/dashboard";
+
+import { issueBookListContext } from '../../App'
 
 function Issuedbooks() {
-  return (
 
+  const [issueBookListArray] =useContext(issueBookListContext)
+
+  return (
+    <div className="d-flex">
+  <div>
+    <Dashboard />
+  </div>
     <div className="container-issuebooks">
         <p className="header-of-issuedbooks">Issued Books</p>
         <hr />
-        <div className="srch-cls"><input class="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search" aria-label="Search" />
+        <div className="srch-cls"><input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search" aria-label="Search" />
         <ModalIssueBook /></div>
 
     <Table responsive>
@@ -24,34 +33,23 @@ function Issuedbooks() {
           <th>Actions</th>
         </tr>
       </thead>
+      {issueBookListArray.map((item) => {
+            return (
       <tbody>
         <tr>
-          <td>It Start With Us</td>
-          <td>Nitha Samuel</td>
-          <td>02-11-2022 </td>
-          <td>09-11-2022</td>
+          <td>{item.bookTitle}</td>
+          <td>{item.student}</td>
+          <td>{item.issueDate}</td>
+          <td>{item.dueDate}</td>
           <td>10</td>
           <td><MdAssignmentReturn /></td>     
-        </tr>
-        <tr>
-          <td>The Breach</td>
-        <td>Anjali Thomas</td>
-        <td>02-11-2022</td>
-        <td>09-11-2022</td>
-        <td>10</td>
-        <td><MdAssignmentReturn /></td>
-        </tr>
-        <tr>
-          <td>Rich Dad Poor Dad</td>
-          <td>Rahul S</td>
-          <td>03-11-2022</td>
-          <td>10-11-2022</td>
-          <td>0</td>
-          <td><MdAssignmentReturn /></td>
-        </tr>
+        </tr>    
       </tbody>
+      );
+    })}
     </Table>
 
+    </div>
     </div>
   );
 }

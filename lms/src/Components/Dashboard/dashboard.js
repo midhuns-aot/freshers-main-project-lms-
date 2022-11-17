@@ -8,7 +8,7 @@ import { IoBookSharp } from "react-icons/io5";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { BsCheck2Circle } from "react-icons/bs";
 
-function dashboard() {
+function Dashboard() {
   return (
     <div >
           <div>
@@ -31,4 +31,4 @@ function dashboard() {
   )
 }
 
-export default dashboard
+export default Dashboard;
