@@ -55,9 +55,9 @@ function Loginpage() {
           </div>
 
           <form onSubmit={submitHandler}>
-            <p className="login-elements">
+            <p className="login-elements ">
               Email
-              <br />
+              <br /><br />
               <input
                 type="text"
                 placeholder="Enter your email"
@@ -70,7 +70,7 @@ function Loginpage() {
             </p>
             <p className="login-elements">
               Password
-              <br />
+              <br /><br />
               <input
                 type="password"
                 placeholder="Enter your password"
@@ -79,7 +79,7 @@ function Loginpage() {
                 }
                 value={details.password}
               />
-              <br />
+              <br /><br />
             </p>
             <button type="submit">Login</button>
           </form>

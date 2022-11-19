@@ -38,7 +38,7 @@ function Students() {
         </div>
 
         <Table responsive>
-          <thead>
+          <thead align="center">
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -47,12 +47,12 @@ function Students() {
           </thead>
           {studentListArray.map((item) => {
             return (
-          <tbody>
+          <tbody align="center">
             <tr>
               <td>{item.name}</td>
-              <td>{item.email}</td>
+              <td >{item.email}</td>
               <td>
-                <RiPencilFill /> <HiOutlineTrash /> <AiOutlineEye />
+                <RiPencilFill  /> <HiOutlineTrash className="trash ms-2"/> <AiOutlineEye className="ms-2"/>
               </td>
             </tr>
           </tbody>

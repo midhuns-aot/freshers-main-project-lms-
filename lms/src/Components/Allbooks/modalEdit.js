@@ -6,6 +6,9 @@ import Modal from "react-bootstrap/Modal";
 import { bookListContext } from "../../App";
 import { nanoid } from "nanoid";
 
+//Importig Pencil Icon 
+import { RiPencilFill } from "react-icons/ri";
+
 // const tableContent = createContext();
 
 function ModalAddingBook() {
@@ -53,9 +56,7 @@ function ModalAddingBook() {
 
   return (
     <>
-      <Button className="addbook-btn" variant="primary" onClick={handleShow}>
-        Add Book
-      </Button>
+      <RiPencilFill  onClick={handleShow}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -143,7 +144,7 @@ function ModalAddingBook() {
               handleSubmit();
             }}
           >
-            Add Book
+            Update
           </Button>
         </Modal.Footer>
       </Modal>

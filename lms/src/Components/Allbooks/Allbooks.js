@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
+// Importing CSS
 import "./Allbooks.css";
+// Importing Table
 import Table from "react-bootstrap/Table";
-import { RiPencilFill } from "react-icons/ri";
-import { HiOutlineTrash } from "react-icons/hi";
-import ModaAddingBook from "./ModalForAddingBook";
-import Dashboard from "../Dashboard/dashboard";
 
+//Imporing Modal For Adding Books
+import ModalAddingBook from "./ModalForAddingBook";
+// Importing Dashboard
+import Dashboard from "../Dashboard/dashboard";
+// Importing Modal For Deleting
+import Delete from "./modalDelete";
+//Importing Arrays
 import { bookListContext } from "../../App";
+
+import Edit from "./modalEdit"
 
 function Allbooks() {
   const [bookListArray] = useContext(bookListContext);
+
   return (
     <div className="d-flex">
       <div>
@@ -27,7 +35,7 @@ function Allbooks() {
             placeholder="Search"
             aria-label="Search"
           />
-          <ModaAddingBook />
+          <ModalAddingBook />
         </div>
 
         <Table responsive>
@@ -43,7 +51,7 @@ function Allbooks() {
           </thead>
           {bookListArray.map((item) => {
             return (
-              <tbody>
+              <tbody key={item.bookId}>
                 <tr>
                   <td>{item.name}</td>
                   <td>{item.author}</td>
@@ -51,7 +59,8 @@ function Allbooks() {
                   <td>{item.totalCopies}</td>
                   <td>{item.remaining}</td>
                   <td>
-                    <RiPencilFill /> <HiOutlineTrash />
+                    <Edit />
+                    <Delete keyId={item.bookId} />
                   </td>
                 </tr>
               </tbody>

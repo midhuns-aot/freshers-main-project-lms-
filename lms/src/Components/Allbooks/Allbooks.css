@@ -55,7 +55,7 @@
 
 
   
-/* CSS for Modals */
+/* CSS for Modals of Adding a Book */
 
 .modal-buttons2{
   display: flex;
@@ -95,4 +95,31 @@
   display: flex;
   gap: 50px;
 }
+
+.trash{
+  color: #D04444 !important;
+}
+
+
+/* CSS for Modals of Deleting a Book */
+
+.yesButton,
+.noButton{
+
+width: 104px;
+height: 40px;
+left: 745px;
+top: 336px;
+border-radius: 5px;
+
+
+}
+.yesButton{
+  background: #ED7966 !important;
+  border: none !important;
+}
+
+
+
+
   

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { issueBookListContext } from '../../App'
+import { issueBookListContext } from "../../App";
 
 function ModalIssueBook() {
   const [show, setShow] = useState(false);
@@ -10,29 +10,30 @@ function ModalIssueBook() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [issueBookListArray, setIissueBookListArray] =useContext(issueBookListContext)
+  const [issueBookListArray, setIissueBookListArray] =
+    useContext(issueBookListContext);
 
-  const [issueBook, setIissueBook]= useState([
+  const [issueBook, setIissueBook] = useState([
     {
-      bookTitle:"",
+      bookTitle: "",
       student: "",
-      issueDate:"",
-      dueDate: ""
-    }
-  ])
+      issueDate: "",
+      dueDate: "",
+    },
+  ]);
 
-  const handleSubmit = () =>{
+  const handleSubmit = () => {
     const newData = {
       id: new Date().getTime().toString(),
       bookTitle: issueBook.bookTitle,
       student: issueBook.student,
       issueDate: issueBook.issueDate,
-      dueDate: issueBook.dueDate
-    }
-    setIissueBookListArray([...issueBookListArray,newData]);
-    setIissueBook("")
-    console.log(newData)
-    }
+      dueDate: issueBook.dueDate,
+    };
+    setIissueBookListArray([...issueBookListArray, newData]);
+    setIissueBook("");
+    console.log(newData);
+  };
 
   return (
     <>
@@ -48,39 +49,59 @@ function ModalIssueBook() {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Book</Form.Label>
-              <Form.Control type="text"
-               placeholder="Select Book" 
-               autoFocus 
-               value={issueBook.bookTitle}
-               required
-               onChange={(e) =>setIissueBook({ ...issueBook, bookTitle: e.target.value })}
-               />
+              <Form.Select
+                type="text"
+                placeholder="Select Book"
+                autoFocus
+                value={issueBook.bookTitle}
+                required
+                onChange={(e) =>
+                  setIissueBook({ ...issueBook, bookTitle: e.target.value })
+                }
+              >
+                <option>Select Book</option>
+                <option>It Start With Us</option>
+                <option>The Breach</option>
+                <option>Rich Dad Poor Dad</option>
+                <option>The House of the Spirits</option>
+                <option>The Alchemist</option>
+                <option>The Old Man and the Sea</option>
+              </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Student</Form.Label>
-              <Form.Control type="text"
-               placeholder="Select Student" 
-               value={issueBook.student}
-               required
-               onChange={(e) =>setIissueBook({ ...issueBook, student: e.target.value })}
-               />
+              <Form.Control
+                type="text"
+                placeholder="Select Student"
+                value={issueBook.student}
+                required
+                onChange={(e) =>
+                  setIissueBook({ ...issueBook, student: e.target.value })
+                }
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Issue Date</Form.Label>
-              <Form.Control type="date"
-               placeholder="09-11-2022" 
-               value={issueBook.issueDate}
-               required
-               onChange={(e) =>setIissueBook({ ...issueBook, issueDate: e.target.value })}
-               />
+              <Form.Control
+                type="date"
+                placeholder="09-11-2022"
+                value={issueBook.issueDate}
+                required
+                onChange={(e) =>
+                  setIissueBook({ ...issueBook, issueDate: e.target.value })
+                }
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Due Date</Form.Label>
-              <Form.Control type="date" 
-              placeholder="Select Book" 
-              value={issueBook.dueDate}
-               required
-               onChange={(e) =>setIissueBook({ ...issueBook, dueDate: e.target.value })}
+              <Form.Control
+                type="date"
+                placeholder="Select Book"
+                value={issueBook.dueDate}
+                required
+                onChange={(e) =>
+                  setIissueBook({ ...issueBook, dueDate: e.target.value })
+                }
               />
             </Form.Group>
           </Form>

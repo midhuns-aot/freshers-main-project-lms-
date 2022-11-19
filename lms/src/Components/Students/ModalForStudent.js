@@ -22,7 +22,6 @@ function ModalForStudents() {
   ]);
 
   const handleSubmit = () => {
-    console.log("clicked")
     const newStudent =  {
       id: new Date().getTime().toString(),
       name :student.name,
