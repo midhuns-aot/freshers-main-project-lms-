@@ -4,13 +4,15 @@ import "./Students.css";
 import Table from "react-bootstrap/Table";
 
 import { RiPencilFill } from "react-icons/ri";
-import { HiOutlineTrash } from "react-icons/hi";
+// import { HiOutlineTrash } from "react-icons/hi";
 import { AiOutlineEye } from "react-icons/ai";
 
 import ModalForStudents from "./ModalForStudent";
 import Dashboard from "../Dashboard/dashboard";
 
 import { studentListContext } from '../../App';
+
+import Delete from "./modalDeleteStudent";
 
 
 function Students() {
@@ -38,7 +40,7 @@ function Students() {
         </div>
 
         <Table responsive>
-          <thead align="center">
+          <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -47,12 +49,12 @@ function Students() {
           </thead>
           {studentListArray.map((item) => {
             return (
-          <tbody align="center">
+          <tbody key={item.stdId}>
             <tr>
               <td>{item.name}</td>
               <td >{item.email}</td>
               <td>
-                <RiPencilFill  /> <HiOutlineTrash className="trash ms-2"/> <AiOutlineEye className="ms-2"/>
+                <RiPencilFill  /> <Delete  keyID={item.stdId} />  <AiOutlineEye className="ms-2"/>
               </td>
             </tr>
           </tbody>

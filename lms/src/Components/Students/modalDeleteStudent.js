@@ -3,19 +3,19 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { TbTrash } from 'react-icons/tb';
 
-import { bookListContext } from "../../App";
+import { studentListContext } from '../../App';
 
 function Delete({keyId}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [bookListArray, setBookListArray] = useContext(bookListContext);
+  const [studentListArray, setStudentlistArray] = useContext(studentListContext)
   
 //   DELETE FUNCTION
   const  handleDelete = () => {
     console.log(keyId)
-    setBookListArray(bookListArray.filter((bookListArray) => bookListArray.bookId !==keyId))
+    setStudentlistArray(studentListArray.filter((studentListArray) => studentListArray.bookId !==keyId))
   }
 
   return (

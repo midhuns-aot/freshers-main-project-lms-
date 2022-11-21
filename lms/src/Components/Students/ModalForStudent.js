@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { studentListContext } from '../../App';
+import { nanoid } from "nanoid";
 
 function ModalForStudents() {
   const [show, setShow] = useState(false);
@@ -13,22 +14,28 @@ function ModalForStudents() {
   const [studentListArray, setStudentlistArray] = useContext(studentListContext)
 
 
-  const [student, setStudent] = useState([
-    {
-      id: "",
-      name:"",
-      email: ""
-    }
-  ]);
+  // const [student, setStudent] = useState([
+  //   {
+  //     id: "",
+  //     name:"",
+  //     email: ""
+  //   }
+  // ]);
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+
+
 
   const handleSubmit = () => {
     const newStudent =  {
-      id: new Date().getTime().toString(),
-      name :student.name,
-      email:student.email
+     stdId: nanoid(),
+      name :name,
+      email:email
     };
     setStudentlistArray([...studentListArray, newStudent]);
-    setStudent("");
+    setName("");
+    setEmail("")
     console.log(newStudent);
   };
 
@@ -48,16 +55,16 @@ function ModalForStudents() {
               <Form.Label>Name</Form.Label>
               <Form.Control type="text"
                placeholder="Eg: John Doe" 
-               value={student.name}
-               required onChange={(e) => setStudent({ ...student, name: e.target.value })}
+               value={name}
+               required onChange={(e) => setName( e.target.value)}
                autoFocus />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control type="Email" 
               placeholder="Eg: johndoe@gmail.com" 
-              value={student.email}
-              required onChange={(e) => setStudent({ ...student, email: e.target.value })}
+              value={email}
+              required onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

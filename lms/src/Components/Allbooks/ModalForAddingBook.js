@@ -43,7 +43,7 @@ function ModalAddingBook() {
       remaining: remaining,
     };
     setBookListArray([...bookListArray, newItem]);
-    console.log(newItem);
+    // console.log(newItem);
     setName("");
     setAuthor("");
     setLanguage("");

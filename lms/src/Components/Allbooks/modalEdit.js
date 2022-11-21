@@ -4,14 +4,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 import { bookListContext } from "../../App";
-import { nanoid } from "nanoid";
 
 //Importig Pencil Icon 
 import { RiPencilFill } from "react-icons/ri";
 
-// const tableContent = createContext();
 
-function ModalAddingBook() {
+function ModalEditingBook({keyId, editName, editAuthor, editLanguage, editTotalCopies, editRemaining}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,41 +17,31 @@ function ModalAddingBook() {
 
   const [bookListArray, setBookListArray] = useContext(bookListContext);
 
-  // const [book, setBook] = useState([
-  //   {
-  //     bookId: "",
-  //     name: "",
-  //     author: "",
-  //     language: "",
-  //     totalCopies: "",
-  //     remaining: "",
-  //   },
-  // ]);
+ 
+  const [name, setName] = useState(editName);
+  const [author, setAuthor] = useState(editAuthor);
+  const [language, setLanguage] = useState(editLanguage);
+  const [totalCopies, setTotalCopies] = useState(editTotalCopies);
+  const [remaining, setRemaining] = useState(editRemaining);
 
-  const [name, setName] = useState("");
-  const [author, setAuthor] = useState("");
-  const [language, setLanguage] = useState("");
-  const [totalCopies, setTotalCopies] = useState("");
-  const [remaining, setRemaining] = useState("");
-
-  const handleSubmit = () => {
-    const newItem = {
-      bookId: nanoid(),
-      name: name,
-      author: author,
-      language: language,
-      totalCopies: totalCopies,
-      remaining: remaining,
-    };
-    setBookListArray([...bookListArray, newItem]);
-    console.log(newItem);
-    setName("");
-    setAuthor("");
-    setLanguage("");
-    setTotalCopies("");
-    setRemaining("");
-  };
-
+  const editBookList = () =>{
+    setBookListArray(
+      bookListArray.map((bookListArray) => {
+        if(bookListArray.bookId === keyId) {
+          console.log("clicked")
+        return {
+          ...bookListArray,
+          name: name,
+          author: author,
+          language: language,
+          totalCopies: totalCopies,
+          remaining: remaining,
+        };
+      }
+      return  bookListArray;
+      })
+      ) 
+}
   return (
     <>
       <RiPencilFill  onClick={handleShow}/>
@@ -91,6 +79,7 @@ function ModalAddingBook() {
               className="mb-3"
               controlid="exampleForm.ControlInput1"
               required
+              value={language}
               onChange={(e) => setLanguage(e.target.value)}
             >
               <option>Select Language</option>
@@ -121,6 +110,7 @@ function ModalAddingBook() {
                 <Form.Control
                   type="text"
                   placeholder="2"
+                  value={remaining}
                   required
                   onChange={(e) => setRemaining(e.target.value)}
                 />
@@ -141,7 +131,7 @@ function ModalAddingBook() {
             variant="primary"
             onClick={() => {
               handleClose();
-              handleSubmit();
+              editBookList();
             }}
           >
             Update
@@ -152,4 +142,4 @@ function ModalAddingBook() {
   );
 }
 
-export default ModalAddingBook;
+export default ModalEditingBook;

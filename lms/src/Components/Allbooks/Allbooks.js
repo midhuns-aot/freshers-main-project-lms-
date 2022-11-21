@@ -13,6 +13,7 @@ import Delete from "./modalDelete";
 //Importing Arrays
 import { bookListContext } from "../../App";
 
+
 import Edit from "./modalEdit"
 
 function Allbooks() {
@@ -59,7 +60,16 @@ function Allbooks() {
                   <td>{item.totalCopies}</td>
                   <td>{item.remaining}</td>
                   <td>
-                    <Edit />
+                    {/* <Edit keyId={item.bookId} /> */}
+                    <Edit 
+                    keyId={item.bookId}
+                    editName={item.name}
+                    editAuthor={item.author}
+                    editLanguage={item.language}
+                    editTotalCopies={item.totalCopies}
+                    editRemaining={item.remaining}
+
+                    />
                     <Delete keyId={item.bookId} />
                   </td>
                 </tr>
