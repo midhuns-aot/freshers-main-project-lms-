@@ -35,7 +35,7 @@ function Issuedbooks() {
       </thead>
       {issueBookListArray.map((item) => {
             return (
-      <tbody>
+      <tbody key={item.issueId}>
         <tr>
           <td>{item.bookTitle}</td>
           <td>{item.student}</td>

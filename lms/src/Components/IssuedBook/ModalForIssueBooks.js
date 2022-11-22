@@ -3,6 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { issueBookListContext } from "../../App";
+import { studentListContext } from '../../App';
+import { bookListContext } from "../../App";
+import { nanoid } from "nanoid";
 
 function ModalIssueBook() {
   const [show, setShow] = useState(false);
@@ -10,29 +13,30 @@ function ModalIssueBook() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [issueBookListArray, setIissueBookListArray] =
-    useContext(issueBookListContext);
+  const [issueBookListArray, setIissueBookListArray] =useContext(issueBookListContext);
 
-  const [issueBook, setIissueBook] = useState([
-    {
-      bookTitle: "",
-      student: "",
-      issueDate: "",
-      dueDate: "",
-    },
-  ]);
+  const [studentListArray, setStudentListArray] = useContext(studentListContext)
+  const [bookListArray, setBookListArray] = useContext(bookListContext);
+
+
+  const [bookTitle, setBookTitle] = useState();
+  const [students, setStudents] = useState();
+  const [issueDate, setIssueDate] = useState();
+  const [ dueDate, setDueDate] = useState();
 
   const handleSubmit = () => {
     const newData = {
-      id: new Date().getTime().toString(),
-      bookTitle: issueBook.bookTitle,
-      student: issueBook.student,
-      issueDate: issueBook.issueDate,
-      dueDate: issueBook.dueDate,
+      issueId: nanoid(),
+      bookTitle: bookTitle,
+      student: students,
+      issueDate: issueDate,
+      dueDate: dueDate,
     };
     setIissueBookListArray([...issueBookListArray, newData]);
-    setIissueBook("");
-    console.log(newData);
+    setBookTitle("");
+    setStudents("");
+    setIssueDate("");
+    setDueDate("");
   };
 
   return (
@@ -48,48 +52,47 @@ function ModalIssueBook() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Book</Form.Label>
+              <Form.Label style={{color:"#09174A"}}>Book</Form.Label>
               <Form.Select
-                type="text"
+                type="select"
                 placeholder="Select Book"
                 autoFocus
-                value={issueBook.bookTitle}
+                value={bookTitle}
                 required
-                onChange={(e) =>
-                  setIissueBook({ ...issueBook, bookTitle: e.target.value })
-                }
+                onChange={(e) =>setBookTitle(e.target.value )}
               >
                 <option>Select Book</option>
-                <option>It Start With Us</option>
-                <option>The Breach</option>
-                <option>Rich Dad Poor Dad</option>
-                <option>The House of the Spirits</option>
-                <option>The Alchemist</option>
-                <option>The Old Man and the Sea</option>
+                {bookListArray.map((item)=>{
+                  return <option>{item.name}</option>
+                })}
+                
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Student</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Select Student"
-                value={issueBook.student}
+
+              <Form.Label style={{color:"#09174A"}}>Student</Form.Label>
+              <Form.Select
+                type="select"
+                placeholder="Select Book"
+                autoFocus
+                value={students}
                 required
-                onChange={(e) =>
-                  setIissueBook({ ...issueBook, student: e.target.value })
-                }
-              />
+                onChange={(e) =>setStudents(e.target.value )}
+              >
+                <option>Select Student</option>
+                {studentListArray.map((item)=>{
+                  return <option>{item.name}</option>
+                })}
+              </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Issue Date</Form.Label>
               <Form.Control
                 type="date"
                 placeholder="09-11-2022"
-                value={issueBook.issueDate}
+                value={issueDate}
                 required
-                onChange={(e) =>
-                  setIissueBook({ ...issueBook, issueDate: e.target.value })
-                }
+                onChange={(e) =>setIssueDate(e.target.value )}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -97,11 +100,9 @@ function ModalIssueBook() {
               <Form.Control
                 type="date"
                 placeholder="Select Book"
-                value={issueBook.dueDate}
+                value={dueDate}
                 required
-                onChange={(e) =>
-                  setIissueBook({ ...issueBook, dueDate: e.target.value })
-                }
+                onChange={(e) =>setDueDate(e.target.value )}
               />
             </Form.Group>
           </Form>

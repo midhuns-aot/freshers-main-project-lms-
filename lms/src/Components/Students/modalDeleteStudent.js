@@ -14,7 +14,6 @@ function Delete({keyId}) {
   
 //   DELETE FUNCTION
   const  handleDelete = () => {
-    console.log(keyId)
     setStudentlistArray(studentListArray.filter((studentListArray) => studentListArray.bookId !==keyId))
   }
 

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useState ,useContext } from "react";
 import "./Students.css";
 
 import Table from "react-bootstrap/Table";
 
-import { RiPencilFill } from "react-icons/ri";
+
 // import { HiOutlineTrash } from "react-icons/hi";
 import { AiOutlineEye } from "react-icons/ai";
 
@@ -14,10 +14,16 @@ import { studentListContext } from '../../App';
 
 import Delete from "./modalDeleteStudent";
 
+import Edit from "./ModalForEditStudent";
+
+
+
 
 function Students() {
 
   const [studentListArray] = useContext(studentListContext)
+
+  const [searches, setSearches] = useState("")
 
   return (
     <div className="d-flex">
@@ -35,6 +41,8 @@ function Students() {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            value={searches}
+            onChange={(e) => setSearches(e.target.value)}
           />
           <ModalForStudents />
         </div>
@@ -47,14 +55,29 @@ function Students() {
               <th>Actions</th>
             </tr>
           </thead>
-          {studentListArray.map((item) => {
+          {studentListArray.filter((value) => {
+            if (searches === "") {
+              return value;
+            } else if (value.name.toLowerCase().includes(searches.toLowerCase())) {
+              return value
+            }
+            else if(value.email.toLowerCase().includes(searches.toLowerCase())){
+              return value
+            }
+            return 0;
+            }).map((item) => {
             return (
           <tbody key={item.stdId}>
             <tr>
               <td>{item.name}</td>
               <td >{item.email}</td>
               <td>
-                <RiPencilFill  /> <Delete  keyID={item.stdId} />  <AiOutlineEye className="ms-2"/>
+                <Edit 
+                keyId={item.stdId}
+                editName={item.name}
+                editEmail={item.email}
+                /> 
+                <Delete  keyID={item.stdId} />  <AiOutlineEye/>
               </td>
             </tr>
           </tbody>

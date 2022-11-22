@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 // Importing CSS
 import "./Allbooks.css";
 // Importing Table
@@ -18,6 +18,7 @@ import Edit from "./modalEdit"
 
 function Allbooks() {
   const [bookListArray] = useContext(bookListContext);
+  const [searches, setSearches] = useState("")
 
   return (
     <div className="d-flex">
@@ -35,6 +36,8 @@ function Allbooks() {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            value={searches}
+            onChange={(e) => setSearches(e.target.value)}
           />
           <ModalAddingBook />
         </div>
@@ -50,7 +53,17 @@ function Allbooks() {
               <th>Actions</th>
             </tr>
           </thead>
-          {bookListArray.map((item) => {
+          {bookListArray.filter((value) => {
+            if (searches === "") {
+              return value;
+            } else if (value.name.toLowerCase().includes(searches.toLowerCase())) {
+              return value
+            }
+            else if(value.author.toLowerCase().includes(searches.toLowerCase())){
+              return value
+            }
+            return 0;
+            }).map((item) => {
             return (
               <tbody key={item.bookId}>
                 <tr>

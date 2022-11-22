@@ -16,17 +16,6 @@ function ModalAddingBook() {
 
   const [bookListArray, setBookListArray] = useContext(bookListContext);
 
-  // const [book, setBook] = useState([
-  //   {
-  //     bookId: "",
-  //     name: "",
-  //     author: "",
-  //     language: "",
-  //     totalCopies: "",
-  //     remaining: "",
-  //   },
-  // ]);
-
   const [name, setName] = useState("");
   const [author, setAuthor] = useState("");
   const [language, setLanguage] = useState("");

@@ -28,7 +28,6 @@ function ModalEditingBook({keyId, editName, editAuthor, editLanguage, editTotalC
     setBookListArray(
       bookListArray.map((bookListArray) => {
         if(bookListArray.bookId === keyId) {
-          console.log("clicked")
         return {
           ...bookListArray,
           name: name,
