@@ -3,7 +3,7 @@ import Issuedbooks from "./Components/IssuedBook/Issuedbooks";
 import Allbooks from './Components/Allbooks/Allbooks'
 import Students from './Components/Students/Students'
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {  Route, Routes} from 'react-router-dom';
 
 import { createContext, useState } from 'react';
@@ -13,12 +13,50 @@ import { createContext, useState } from 'react';
  const issueBookListContext = createContext()
  const studentListContext = createContext()
 
+ const getBookList = () => {
+  let bookListArray = localStorage.getItem('bookListArray');
+  console.log(bookListArray);
+  if(bookListArray){
+    return JSON.parse(localStorage.getItem('bookListArray'));
+  }else {
+    return [];
+  } 
+ }
+
+ const getIssueBookList = () => {
+  let issueBookListArray = localStorage.getItem('issueBookListArray');
+  console.log(issueBookListArray);
+  if(issueBookListArray){
+    return JSON.parse(localStorage.getItem('issueBookListArray'));
+  }else {
+    return [];
+  } 
+ }
+
+ const getStudentList = () => {
+  let studentListArray = localStorage.getItem('studentListArray');
+  console.log(studentListArray);
+  if(studentListArray){
+    return JSON.parse(localStorage.getItem('studentListArray'));
+  }else {
+    return [];
+  } 
+ }
+
+
 
 function App() {
 
-  const [bookListArray, setBookListArray] = useState([])
-  const [issueBookListArray, setIissueBookListArray] = useState([])
-  const [studentListArray, setStudentlistArray] = useState([])
+  const [bookListArray, setBookListArray] = useState(getBookList())
+  const [issueBookListArray, setIissueBookListArray] = useState(getIssueBookList())
+  const [studentListArray, setStudentlistArray] = useState(getStudentList())
+
+
+  useEffect(()=>{
+    localStorage.setItem('bookListArray', JSON.stringify(bookListArray))
+    localStorage.setItem('issueBookListArray', JSON.stringify(issueBookListArray))
+    localStorage.setItem('studentListArray', JSON.stringify(studentListArray))
+  }, [bookListArray, issueBookListArray, studentListArray]);
 
 
   return (
@@ -39,8 +77,6 @@ function App() {
         </studentListContext.Provider>
         </issueBookListContext.Provider>
         </bookListContext.Provider>
-      {/* </BrowserRouter> */}
-      {/* </tableContent> */}
     </div>
 
 

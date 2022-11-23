@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import "./Issuedbook.css";
 import Table from "react-bootstrap/Table";
 import ModalIssueBook from "./ModalForIssueBooks";
-import { MdAssignmentReturn } from "react-icons/md";
+// import { MdAssignmentReturn } from "react-icons/md";
 import Dashboard from "../Dashboard/dashboard";
+import Returnbook from "./ModalForReturn";
 
 import { issueBookListContext } from '../../App'
 
@@ -42,7 +43,7 @@ function Issuedbooks() {
           <td>{item.issueDate}</td>
           <td>{item.dueDate}</td>
           <td>10</td>
-          <td><MdAssignmentReturn /></td>     
+          <td>< Returnbook /></td>     
         </tr>    
       </tbody>
       );

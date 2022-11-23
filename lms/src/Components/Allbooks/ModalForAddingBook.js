@@ -27,9 +27,9 @@ function ModalAddingBook() {
     if (name.length === 0 ||author.length ===0 || language.length===0) {
       setErrors(true);
       handleShow()
-      return 0
+      return 0;
     }
-
+    else{
     const newItem = {
       bookId: nanoid(),
       name: name,
@@ -45,6 +45,7 @@ function ModalAddingBook() {
     setTotalCopies("");
     setRemaining("");
   };
+}
 
   return (
     <>
