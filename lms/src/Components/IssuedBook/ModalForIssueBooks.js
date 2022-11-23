@@ -15,8 +15,8 @@ function ModalIssueBook() {
 
   const [issueBookListArray, setIissueBookListArray] =useContext(issueBookListContext);
 
-  const [studentListArray, setStudentListArray] = useContext(studentListContext)
-  const [bookListArray, setBookListArray] = useContext(bookListContext);
+  const [studentListArray] = useContext(studentListContext)
+  const [bookListArray] = useContext(bookListContext);
 
 
   const [bookTitle, setBookTitle] = useState();

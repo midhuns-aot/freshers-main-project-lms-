@@ -11,7 +11,7 @@ import { nanoid } from "nanoid";
 function ModalAddingBook() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false);setErrors(false)};
   const handleShow = () => setShow(true);
 
   const [bookListArray, setBookListArray] = useContext(bookListContext);
@@ -21,8 +21,15 @@ function ModalAddingBook() {
   const [language, setLanguage] = useState("");
   const [totalCopies, setTotalCopies] = useState("");
   const [remaining, setRemaining] = useState("");
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = () => {
+    if (name.length === 0 ||author.length ===0 || language.length===0) {
+      setErrors(true);
+      handleShow()
+      return 0
+    }
+
     const newItem = {
       bookId: nanoid(),
       name: name,
@@ -32,7 +39,6 @@ function ModalAddingBook() {
       remaining: remaining,
     };
     setBookListArray([...bookListArray, newItem]);
-    // console.log(newItem);
     setName("");
     setAuthor("");
     setLanguage("");
@@ -62,6 +68,11 @@ function ModalAddingBook() {
                 required
                 onChange={(e) => setName(e.target.value)}
               />
+              {errors && name.length <= 0 ? (
+                <label className="errormsg-allbooks">Name Feild Cannot be Empty</label>
+              ) : (
+                ""
+              )}
             </Form.Group>
             <Form.Group className="mb-3" controlid="exampleForm.ControlInput1">
               <Form.Label>Author</Form.Label>
@@ -72,8 +83,14 @@ function ModalAddingBook() {
                 required
                 onChange={(e) => setAuthor(e.target.value)}
               />
+              {errors && author.length <= 0 ? (
+                <label className="errormsg-allbooks">Author Feild Cannot be Empty</label>
+              ) : (
+                ""
+              )}
             </Form.Group>
 
+            <Form.Group>  
             <Form.Label>Language</Form.Label>
             <Form.Select
               className="mb-3"
@@ -86,6 +103,12 @@ function ModalAddingBook() {
               <option>Malayalam</option>
               <option>Hindi</option>
             </Form.Select>
+            {errors && language.length <= 0 ? (
+                <label className="errormsg-allbooks">Please Select the Language</label>
+              ) : (
+                ""
+              )}
+              </Form.Group>
 
             <div className="childrens-add-modal">
               <Form.Group

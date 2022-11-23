@@ -1,53 +1,50 @@
 import React, { useState } from "react";
 import "./Loginpage.css";
-import { useNavigate } from 'react-router-dom';
-import logoo from '../../Images/Mainlogo-fill.png'
+import { useNavigate } from "react-router-dom";
+import logoo from "../../Images/Mainlogo-fill.png";
 
 function Loginpage() {
-  const [details, setDetails] = useState({ email: "", password: "" });
+  // const [details, setDetails] = useState({ email: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const adminUser = { email: "admin@gmail.com", password: "lll" };
-  const [setUser] = useState({ email: "", password: "" });
- 
-  
+  // const [setUser] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState(false);
+
   const navigate = useNavigate();
 
-
-  const Login = (details) => {
+  const Login = () => {
     console.log("Details");
-    if (
-      details.email === adminUser.email &&
-      details.password === adminUser.password
-    ) {
+    if (email === adminUser.email && password === adminUser.password) {
       console.log("Logged in SucessFully");
-      navigate('/isuuedbooks')
-      
-      setUser({
-        email: details.email,
-        password: details.password,
-      });
-    }else{
-      alert("ERROR")
+      navigate("/isuuedbooks");
     }
   };
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    
-    Login(details);
+    e.preventDefault();
+
+    if (email.length === 0 || password.length === 0) {
+      setErrors(true);
+    } else {
+      Login();
+    }
   };
   return (
     <div>
       <div className="container">
-        <div className="d-flex align-items-center gap-2 pt-4"> 
-         <img src=  {logoo} alt="logo" className="pb-2"/> 
-         <h1>  LMS</h1>
-         </div>
+        <div className="d-flex align-items-center gap-2 pt-4">
+          <img src={logoo} alt="logo" className="pb-2" />
+          <h1> LMS</h1>
+        </div>
         <div className="center-main-division">
           <h3>Login</h3>
           <p className="welcome">Welcome back! Please enter your details.</p>
           <div className="link-div">
             <p>
-              <a className="adm" href="adm">Admin</a>
+              <a className="adm" href="adm">
+                Admin
+              </a>
               <a className="student" href="std">
                 Student
               </a>
@@ -57,36 +54,44 @@ function Loginpage() {
           <form onSubmit={submitHandler}>
             <p className="login-elements ">
               Email
-              <br /><br />
+              <br />
+              <br />
               <input
                 type="text"
                 placeholder="Enter your email"
-                onChange={(e) =>
-                  setDetails({ ...details, email: e.target.value })
-                }
-                value={details.email}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
               <br />
             </p>
+            {errors && email.length <= 0 ? (
+              <label className="labels-of-loginpage">Invalid Email</label>
+            ) : (
+              ""
+            )}
             <p className="login-elements">
               Password
-              <br /><br />
+              <br />
+              <br />
               <input
                 type="password"
                 placeholder="Enter your password"
-                onChange={(e) =>
-                  setDetails({ ...details, password: e.target.value })
-                }
-                value={details.password}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
               />
-              <br /><br />
             </p>
+            {errors && password.length <= 0 ? (
+              <label className="labels-of-loginpage pb-3">Wrong Password</label>
+            ) : (
+              ""
+            )}
+            <br />
             <button type="submit">Login</button>
           </form>
         </div>
       </div>
     </div>
-);
+  );
 }
 
 export default Loginpage;

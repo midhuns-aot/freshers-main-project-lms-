@@ -46,14 +46,11 @@ input {
 button {
   width: 406px;
   height: 39px;
-  left: 517px;
-  top: 618px;
 
   background: #ed7966;
   color: #ffffff;
   border-radius: 5px;
   border: none;
-  margin-top: 15px;
   cursor: pointer;
 }
 
@@ -81,4 +78,7 @@ button {
   font-size: 14px;
   line-height: 17px;
   color: #09174a;
+}
+.labels-of-loginpage{
+  color: red;
 }

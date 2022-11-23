@@ -68,3 +68,8 @@
   background: #ed7966;
   border-radius: 5px;
 }
+
+.errormsg-stdn{
+  padding: 10px;
+  color: red;
+}
