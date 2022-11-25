@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
+// Import Buttons From Bootstrap
 import Button from "react-bootstrap/Button";
+// Form From Bootstrap
 import Form from "react-bootstrap/Form";
+// Modal From Bootstrap
 import Modal from "react-bootstrap/Modal";
-
+// Importing BookListArray 
 import { bookListContext } from "../../App";
+//For Unique Id
 import { nanoid } from "nanoid";
 
-// const tableContent = createContext();
 
 function ModalAddingBook() {
   const [show, setShow] = useState(false);
@@ -32,6 +35,7 @@ function ModalAddingBook() {
     else{
     const newItem = {
       bookId: nanoid(),
+      bookTitleId : nanoid(),
       name: name,
       author: author,
       language: language,
@@ -44,6 +48,7 @@ function ModalAddingBook() {
     setLanguage("");
     setTotalCopies("");
     setRemaining("");
+    console.log(newItem)
   };
 }
 

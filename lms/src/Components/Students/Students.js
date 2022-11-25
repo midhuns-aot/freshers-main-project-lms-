@@ -1,29 +1,32 @@
 import React, { useState ,useContext } from "react";
+// Importing Css
 import "./Students.css";
-
+// Importing Table From Bootstrap
 import Table from "react-bootstrap/Table";
-
-
-// import { HiOutlineTrash } from "react-icons/hi";
+// Importing Eye Icons
 import { AiOutlineEye } from "react-icons/ai";
-
+//Importing Modal For Adding Students
 import ModalForStudents from "./ModalForStudent";
+//Importing Dashboard
 import Dashboard from "../Dashboard/dashboard";
-
+//Importing StudentListArray 
 import { studentListContext } from '../../App';
-
+//Importng Delete Modal
 import Delete from "./modalDeleteStudent";
-
+//Importng Edit Modal
 import Edit from "./ModalForEditStudent";
-
-
+//Importing View Student
+import ViewStudent from "./ViewStudent";
+//import Navigation Hook
+import { useNavigate } from "react-router-dom";
 
 
 function Students() {
 
   const [studentListArray] = useContext(studentListContext)
-
   const [searches, setSearches] = useState("")
+
+  //  const navigate = useNavigate();
 
   return (
     <div className="d-flex">
@@ -69,7 +72,7 @@ function Students() {
             return (
           <tbody key={item.stdId}>
             <tr>
-              <td>{item.name}</td>
+              <td key={item.nameId}>{item.name}</td>
               <td >{item.email}</td>
               <td>
                 <Edit 

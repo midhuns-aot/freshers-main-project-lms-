@@ -1,16 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+//Importing Css
 import "./Issuedbook.css";
+//Importing Table From Bootstrap
 import Table from "react-bootstrap/Table";
+//Importing Modal
 import ModalIssueBook from "./ModalForIssueBooks";
-// import { MdAssignmentReturn } from "react-icons/md";
+//Importing Dashboard
 import Dashboard from "../Dashboard/dashboard";
+//Importing Modal For ReturnBook
 import Returnbook from "./ModalForReturn";
-
+//Importing IssueBookListArray 
 import { issueBookListContext } from '../../App'
+//Importing BookListArray 
+import { bookListContext } from "../../App";
 
 function Issuedbooks() {
 
   const [issueBookListArray] =useContext(issueBookListContext)
+  const [bookListArray, setBookListArray] = useContext(bookListContext);
+  const [selectedBookKey, setSelectedBookKey] = useState("");
+
+  //Remaining increment
+  const countRemaining = () =>{
+  const countRem = bookListArray.map((item) => {
+      if(item.name === selectedBookKey){
+        item.remaining= ++item.remaining;
+      }
+      return (item)
+    })
+     setBookListArray(countRem)
+  }
+
 
   return (
     <div className="d-flex">
@@ -43,7 +63,7 @@ function Issuedbooks() {
           <td>{item.issueDate}</td>
           <td>{item.dueDate}</td>
           <td>10</td>
-          <td>< Returnbook /></td>     
+          <td>< Returnbook setSelectedBookKey={setSelectedBookKey} bookTitles={item.bookTitle} countRemaining={countRemaining} issueId={item.issueId} /></td>     
         </tr>    
       </tbody>
       );

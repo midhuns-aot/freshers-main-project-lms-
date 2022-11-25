@@ -1,8 +1,13 @@
 import React, { useState, useContext } from "react";
+// Import Buttons From Bootstrap
 import Button from "react-bootstrap/Button";
+// Form From Bootstrap
 import Form from "react-bootstrap/Form";
+// Modal From Bootstrap
 import Modal from "react-bootstrap/Modal";
+// Importing StudentListArray 
 import { studentListContext } from "../../App";
+//Importing Unique Id
 import { nanoid } from "nanoid";
 
 function ModalForStudents() {
@@ -39,6 +44,7 @@ function ModalForStudents() {
     else{
     const newStudent = {
       stdId: nanoid(),
+      nameId:nanoid(),
       name: name,
       email: email,
       passOne: passOne,

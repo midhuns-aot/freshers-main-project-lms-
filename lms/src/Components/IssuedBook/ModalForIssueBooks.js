@@ -1,13 +1,20 @@
 import React, { useState, useContext } from "react";
+//Import Buttons From Bootstrap
 import Button from "react-bootstrap/Button";
+//Form From Bootstrap
 import Form from "react-bootstrap/Form";
+//// Modal From Bootstrap
 import Modal from "react-bootstrap/Modal";
+// Importing IssueBookListArray 
 import { issueBookListContext } from "../../App";
+// Importing StudentListArray 
 import { studentListContext } from '../../App';
+//Importing BookListArray 
 import { bookListContext } from "../../App";
+//For Unique Id
 import { nanoid } from "nanoid";
 
-function ModalIssueBook() {
+function ModalIssueBook({selectedBookKey}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -16,7 +23,7 @@ function ModalIssueBook() {
   const [issueBookListArray, setIissueBookListArray] =useContext(issueBookListContext);
 
   const [studentListArray] = useContext(studentListContext)
-  const [bookListArray] = useContext(bookListContext);
+  const [bookListArray, setBookListArray] = useContext(bookListContext);
 
 
   const [bookTitle, setBookTitle] = useState();
@@ -28,6 +35,7 @@ function ModalIssueBook() {
     const newData = {
       issueId: nanoid(),
       bookTitle: bookTitle,
+     
       student: students,
       issueDate: issueDate,
       dueDate: dueDate,
@@ -39,9 +47,19 @@ function ModalIssueBook() {
     setDueDate("");
   };
 
+  const countRemainingDecreasing = () =>{
+    const countRemdec = bookListArray.map((item) => {
+        if(item.bookTitleId !== selectedBookKey ){
+          item.remaining= --item.remaining;
+        }
+        return (item)
+      })
+       setBookListArray(countRemdec)
+    }
+
   return (
     <>
-      <Button className="issuedbook-btn" variant="primary" onClick={handleShow}>
+      <Button className="issuedbook-btn" variant="primary" onClick={()=> {handleShow()}}>
         Issue Book
       </Button>
 
@@ -63,7 +81,7 @@ function ModalIssueBook() {
               >
                 <option>Select Book</option>
                 {bookListArray.map((item)=>{
-                  return <option>{item.name}</option>
+                  return <option key={item.bookTitleId}>{item.name}</option>
                 })}
                 
               </Form.Select>
@@ -81,7 +99,7 @@ function ModalIssueBook() {
               >
                 <option>Select Student</option>
                 {studentListArray.map((item)=>{
-                  return <option>{item.name}</option>
+                  return <option key={item.nameId}>{item.name}</option>
                 })}
               </Form.Select>
             </Form.Group>
@@ -121,6 +139,7 @@ function ModalIssueBook() {
             onClick={() => {
               handleClose();
               handleSubmit();
+              countRemainingDecreasing();
             }}
           >
             Issue Book

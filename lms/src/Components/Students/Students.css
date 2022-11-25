@@ -73,3 +73,8 @@
   padding: 10px;
   color: red;
 }
+.container{
+  background: #FFFBFA;
+  width: 100%;
+  padding: 50%;
+}

@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import {  Route, Routes} from 'react-router-dom';
 
 import { createContext, useState } from 'react';
+import ViewStudent from './Components/Students/ViewStudent';
 
 // import { tableContent } from "./Components/Allbooks/ModalForAddingBook"
  const bookListContext  = createContext()
@@ -15,7 +16,6 @@ import { createContext, useState } from 'react';
 
  const getBookList = () => {
   let bookListArray = localStorage.getItem('bookListArray');
-  console.log(bookListArray);
   if(bookListArray){
     return JSON.parse(localStorage.getItem('bookListArray'));
   }else {
@@ -25,7 +25,6 @@ import { createContext, useState } from 'react';
 
  const getIssueBookList = () => {
   let issueBookListArray = localStorage.getItem('issueBookListArray');
-  console.log(issueBookListArray);
   if(issueBookListArray){
     return JSON.parse(localStorage.getItem('issueBookListArray'));
   }else {
@@ -35,7 +34,6 @@ import { createContext, useState } from 'react';
 
  const getStudentList = () => {
   let studentListArray = localStorage.getItem('studentListArray');
-  console.log(studentListArray);
   if(studentListArray){
     return JSON.parse(localStorage.getItem('studentListArray'));
   }else {
@@ -72,6 +70,7 @@ function App() {
         {/* <Route path='/dashboard' element= {<Dashboard />} /> */}
         <Route path='/allbooks' element= { <Allbooks />} />
         <Route path='/students' element= { <Students />} />
+        <Route path='/students/view' element= {<ViewStudent />} />
 
         </Routes>
         </studentListContext.Provider>

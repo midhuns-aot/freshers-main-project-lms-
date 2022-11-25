@@ -12,8 +12,7 @@ import Dashboard from "../Dashboard/dashboard";
 import Delete from "./modalDelete";
 //Importing Arrays
 import { bookListContext } from "../../App";
-
-
+//Importing The Modal For Editing
 import Edit from "./modalEdit"
 
 function Allbooks() {
@@ -41,7 +40,6 @@ function Allbooks() {
           />
           <ModalAddingBook />
         </div>
-
         <Table responsive>
           <thead>
             <tr>
@@ -67,13 +65,12 @@ function Allbooks() {
             return (
               <tbody key={item.bookId}>
                 <tr>
-                  <td>{item.name}</td>
+                  <td key={item.bookTitleId}>{item.name}</td>
                   <td>{item.author}</td>
                   <td>{item.language}</td>
                   <td>{item.totalCopies}</td>
                   <td>{item.remaining}</td>
                   <td>
-                    {/* <Edit keyId={item.bookId} /> */}
                     <Edit 
                     keyId={item.bookId}
                     editName={item.name}

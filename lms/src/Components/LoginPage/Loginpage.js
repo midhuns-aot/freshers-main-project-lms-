@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+//Importing Css
 import "./Loginpage.css";
+//Importing Hook For Navigation
 import { useNavigate } from "react-router-dom";
+//Importing Logo of LMS
 import logoo from "../../Images/Mainlogo-fill.png";
 
 function Loginpage() {
-  // const [details, setDetails] = useState({ email: "", password: "" });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const adminUser = { email: "admin@gmail.com", password: "lll" };
-  // const [setUser] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState(false);
 
   const navigate = useNavigate();
 
+  //Authentication Process
   const Login = () => {
     console.log("Details");
     if (email === adminUser.email && password === adminUser.password) {
@@ -20,16 +22,16 @@ function Loginpage() {
       navigate("/isuuedbooks");
     }
   };
-
+  //Form  submittion
   const submitHandler = (e) => {
     e.preventDefault();
-
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
       Login();
     }
   };
+  
   return (
     <div>
       <div className="container">

@@ -1,17 +1,19 @@
 import React, { useState, useContext } from "react";
+// Import Buttons From Bootstrap
 import Button from "react-bootstrap/Button";
+// Form From Bootstrap
 import Form from "react-bootstrap/Form";
+// // Modal From Bootstrap
 import Modal from "react-bootstrap/Modal";
-
+// Importing BookListArray 
 import { bookListContext } from "../../App";
-
 //Importig Pencil Icon 
 import { RiPencilFill } from "react-icons/ri";
 
 
 function ModalEditingBook({keyId, editName, editAuthor, editLanguage, editTotalCopies, editRemaining}) {
+  
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 

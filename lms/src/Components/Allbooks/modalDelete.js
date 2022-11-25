@@ -1,13 +1,16 @@
 import React, { useState, useContext } from 'react';
+// Import Buttons From Bootstrap
 import Button from 'react-bootstrap/Button';
+// Modal From Bootstrap
 import Modal from 'react-bootstrap/Modal';
+//Trash Icon
 import { TbTrash } from 'react-icons/tb';
-
+// Importing BookListArray 
 import { bookListContext } from "../../App";
 
 function Delete({keyId}) {
+  
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [bookListArray, setBookListArray] = useContext(bookListContext);
