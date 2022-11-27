@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 //Importing Css
 import "./Issuedbook.css";
 //Importing Table From Bootstrap
@@ -17,19 +17,36 @@ import { bookListContext } from "../../App";
 function Issuedbooks() {
 
   const [issueBookListArray] =useContext(issueBookListContext)
-  const [bookListArray, setBookListArray] = useContext(bookListContext);
-  const [selectedBookKey, setSelectedBookKey] = useState("");
+  const [bookListArray] = useContext(bookListContext);
+
+
+  // const bookTitleKeeys = bookListArray.map((item)=> {
+  //   return  item.bookTitleId;
+  //  })
+  //  console.log(bookTitleKeeys)
 
   //Remaining increment
-  const countRemaining = () =>{
-  const countRem = bookListArray.map((item) => {
-      if(item.name === selectedBookKey){
-        item.remaining= ++item.remaining;
-      }
-      return (item)
-    })
-     setBookListArray(countRem)
-  }
+  // const countRemaining = () =>{
+  // const countRem = bookListArray.map((item) => {
+  //     if(item.name === selectedBookKey){
+  //       item.remaining= ++item.remaining;
+  //     }
+  //     return (item)
+  //   })
+  //    setBookListArray(countRem)
+  // }
+
+  // const countRemaining = () =>{
+  //   const count = bookListArray.map((item)=>{
+  //     return(
+  //       IssueBookListArray.map((book)=>{
+  //         if(item.bookTitle === book.bookTitleId){
+  //           console.log("hii")
+  //         }
+  //       })
+  //       )
+  //   }
+  // )}
 
 
   return (
@@ -58,12 +75,18 @@ function Issuedbooks() {
             return (
       <tbody key={item.issueId}>
         <tr>
-          <td>{item.bookTitle}</td>
+          {bookListArray.map((book)=>{
+            
+            if(item.bookTitle === book.bookTitleId){
+              return (<td>{book.name}</td>)
+            }
+          })}
+          
           <td>{item.student}</td>
           <td>{item.issueDate}</td>
           <td>{item.dueDate}</td>
           <td>10</td>
-          <td>< Returnbook setSelectedBookKey={setSelectedBookKey} bookTitles={item.bookTitle} countRemaining={countRemaining} issueId={item.issueId} /></td>     
+          <td>< Returnbook issueTitleId={item.bookTitle} issueBooksId={item.issueId}/></td>     
         </tr>    
       </tbody>
       );

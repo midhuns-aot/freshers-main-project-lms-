@@ -14,7 +14,7 @@ import { bookListContext } from "../../App";
 //For Unique Id
 import { nanoid } from "nanoid";
 
-function ModalIssueBook({selectedBookKey}) {
+function ModalIssueBook() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,19 +23,19 @@ function ModalIssueBook({selectedBookKey}) {
   const [issueBookListArray, setIissueBookListArray] =useContext(issueBookListContext);
 
   const [studentListArray] = useContext(studentListContext)
-  const [bookListArray, setBookListArray] = useContext(bookListContext);
+  const [bookListArray] = useContext(bookListContext);
 
 
-  const [bookTitle, setBookTitle] = useState();
-  const [students, setStudents] = useState();
+  const [bookTitle, setBookTitle] = useState("");
+  const [students, setStudents] = useState("");
   const [issueDate, setIssueDate] = useState();
   const [ dueDate, setDueDate] = useState();
+  let count;
 
   const handleSubmit = () => {
     const newData = {
       issueId: nanoid(),
       bookTitle: bookTitle,
-     
       student: students,
       issueDate: issueDate,
       dueDate: dueDate,
@@ -47,16 +47,24 @@ function ModalIssueBook({selectedBookKey}) {
     setDueDate("");
   };
 
-  const countRemainingDecreasing = () =>{
-    const countRemdec = bookListArray.map((item) => {
-        if(item.bookTitleId !== selectedBookKey ){
-          item.remaining= --item.remaining;
-        }
-        return (item)
-      })
-       setBookListArray(countRemdec)
-    }
-
+//Remainig Count Decreasing
+  const countRemaining = ()=>{
+    count  = bookListArray.map((item)=>{
+       if(item.bookTitleId === bookTitle){
+         item.remaining = --item.remaining;
+       }
+       return (count)  
+     })
+   }
+  // const countRemainingDecreasing = () =>{
+  //   const countRemdec = bookListArray.map((item) => {
+  //       if(item.bookTitleId !== selectedBookKey ){
+  //         item.remaining= --item.remaining;
+  //       }
+  //       return (item)
+  //     })
+  //      setBookListArray(countRemdec)
+  //   }
   return (
     <>
       <Button className="issuedbook-btn" variant="primary" onClick={()=> {handleShow()}}>
@@ -81,7 +89,7 @@ function ModalIssueBook({selectedBookKey}) {
               >
                 <option>Select Book</option>
                 {bookListArray.map((item)=>{
-                  return <option key={item.bookTitleId}>{item.name}</option>
+                  return <option value={item.bookTitleId} >{item.name}</option>
                 })}
                 
               </Form.Select>
@@ -92,14 +100,13 @@ function ModalIssueBook({selectedBookKey}) {
               <Form.Select
                 type="select"
                 placeholder="Select Book"
-                autoFocus
                 value={students}
                 required
                 onChange={(e) =>setStudents(e.target.value )}
               >
                 <option>Select Student</option>
                 {studentListArray.map((item)=>{
-                  return <option key={item.nameId}>{item.name}</option>
+                  return <option>{item.name}</option>
                 })}
               </Form.Select>
             </Form.Group>
@@ -139,7 +146,7 @@ function ModalIssueBook({selectedBookKey}) {
             onClick={() => {
               handleClose();
               handleSubmit();
-              countRemainingDecreasing();
+              countRemaining();
             }}
           >
             Issue Book

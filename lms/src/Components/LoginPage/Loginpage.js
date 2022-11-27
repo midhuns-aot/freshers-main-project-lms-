@@ -35,7 +35,7 @@ function Loginpage() {
   return (
     <div>
       <div className="container">
-        <div className="d-flex align-items-center gap-2 pt-4">
+        <div className="loginpage-logo">
           <img src={logoo} alt="logo" className="pb-2" />
           <h1> LMS</h1>
         </div>

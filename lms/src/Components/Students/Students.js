@@ -26,8 +26,6 @@ function Students() {
   const [studentListArray] = useContext(studentListContext)
   const [searches, setSearches] = useState("")
 
-  //  const navigate = useNavigate();
-
   return (
     <div className="d-flex">
       <div>
