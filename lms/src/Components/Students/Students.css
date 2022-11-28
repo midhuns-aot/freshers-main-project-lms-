@@ -59,7 +59,6 @@
   padding: 10px 20px;
   gap: 10px;
 
- 
   width: 185px;
   height: 40px;
   left: 1191px;
@@ -69,12 +68,50 @@
   border-radius: 5px;
 }
 
-.errormsg-stdn{
+.errormsg-stdn {
   padding: 10px;
   color: red;
 }
-.container{
-  background: #FFFBFA;
+
+.viewContainer {
+  background: #fffbfa;
   width: 100%;
-  padding: 50%;
+  
+}
+
+.back-to-stdnt-page {
+  width: 100%;
+  /* height: 50px; */
+  border: 1px solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-top: 10px;
+
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.student-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-email{
+  border: 1px solid #e3e3e3;
+  width: 930px;
+  height: 90%;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+
+.Arrow-icon{
+  cursor: pointer;
 }

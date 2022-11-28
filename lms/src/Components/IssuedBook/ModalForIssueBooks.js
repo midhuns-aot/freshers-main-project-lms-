@@ -31,12 +31,13 @@ function ModalIssueBook() {
   const [issueDate, setIssueDate] = useState();
   const [ dueDate, setDueDate] = useState();
   let count;
+  
 
   const handleSubmit = () => {
     const newData = {
       issueId: nanoid(),
       bookTitle: bookTitle,
-      student: students,
+      students: students,
       issueDate: issueDate,
       dueDate: dueDate,
     };
@@ -56,15 +57,7 @@ function ModalIssueBook() {
        return (count)  
      })
    }
-  // const countRemainingDecreasing = () =>{
-  //   const countRemdec = bookListArray.map((item) => {
-  //       if(item.bookTitleId !== selectedBookKey ){
-  //         item.remaining= --item.remaining;
-  //       }
-  //       return (item)
-  //     })
-  //      setBookListArray(countRemdec)
-  //   }
+  
   return (
     <>
       <Button className="issuedbook-btn" variant="primary" onClick={()=> {handleShow()}}>
@@ -89,7 +82,7 @@ function ModalIssueBook() {
               >
                 <option>Select Book</option>
                 {bookListArray.map((item)=>{
-                  return <option value={item.bookTitleId} >{item.name}</option>
+                  return <option value={item.bookTitleId}>{item.name}</option>
                 })}
                 
               </Form.Select>
@@ -106,7 +99,7 @@ function ModalIssueBook() {
               >
                 <option>Select Student</option>
                 {studentListArray.map((item)=>{
-                  return <option>{item.name}</option>
+                  return <option value={item.nameId}>{item.name}</option>
                 })}
               </Form.Select>
             </Form.Group>

@@ -3,8 +3,6 @@ import React, { useState ,useContext } from "react";
 import "./Students.css";
 // Importing Table From Bootstrap
 import Table from "react-bootstrap/Table";
-// Importing Eye Icons
-import { AiOutlineEye } from "react-icons/ai";
 //Importing Modal For Adding Students
 import ModalForStudents from "./ModalForStudent";
 //Importing Dashboard
@@ -15,16 +13,18 @@ import { studentListContext } from '../../App';
 import Delete from "./modalDeleteStudent";
 //Importng Edit Modal
 import Edit from "./ModalForEditStudent";
-//Importing View Student
-import ViewStudent from "./ViewStudent";
 //import Navigation Hook
 import { useNavigate } from "react-router-dom";
+//importing Logo Of Icon
+import { HiOutlineEye } from "react-icons/hi";
 
 
 function Students() {
 
   const [studentListArray] = useContext(studentListContext)
   const [searches, setSearches] = useState("")
+
+  const navigate = useNavigate();
 
   return (
     <div className="d-flex">
@@ -78,7 +78,13 @@ function Students() {
                 editName={item.name}
                 editEmail={item.email}
                 /> 
-                <Delete  keyID={item.stdId} />  <AiOutlineEye/>
+                <Delete  keyID={item.stdId} />  
+                <HiOutlineEye
+                style={{ color: "#7E7E7F" }}
+                onClick = {() =>{
+                  navigate("/students/view")
+                }}
+                />
               </td>
             </tr>
           </tbody>

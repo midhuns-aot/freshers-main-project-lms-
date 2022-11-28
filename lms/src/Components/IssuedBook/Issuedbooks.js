@@ -13,11 +13,15 @@ import Returnbook from "./ModalForReturn";
 import { issueBookListContext } from '../../App'
 //Importing BookListArray 
 import { bookListContext } from "../../App";
+//Importing StudentListArray 
+import { studentListContext } from '../../App';
 
 function Issuedbooks() {
 
   const [issueBookListArray] =useContext(issueBookListContext)
   const [bookListArray] = useContext(bookListContext);
+
+  const [studentListArray] = useContext(studentListContext)
 
 
   // const bookTitleKeeys = bookListArray.map((item)=> {
@@ -81,12 +85,15 @@ function Issuedbooks() {
               return (<td>{book.name}</td>)
             }
           })}
-          
-          <td>{item.student}</td>
+          {studentListArray.map((std)=>{
+            if(item.students === std.nameId){
+              return(<td>{std.name}</td>)
+            }
+          })}
           <td>{item.issueDate}</td>
           <td>{item.dueDate}</td>
           <td>10</td>
-          <td>< Returnbook issueTitleId={item.bookTitle} issueBooksId={item.issueId}/></td>     
+          <td>< Returnbook issueTitleId={item.bookTitle} issueBooksId={item.issueId} /></td>     
         </tr>    
       </tbody>
       );
