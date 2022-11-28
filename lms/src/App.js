@@ -70,7 +70,7 @@ function App() {
         {/* <Route path='/dashboard' element= {<Dashboard />} /> */}
         <Route path='/allbooks' element= { <Allbooks />} />
         <Route path='/students' element= { <Students />} />
-        <Route path='/students/view' element= {<ViewStudent />} />
+        <Route path='/students/:studentId' element= {<ViewStudent />} />
 
         </Routes>
         </studentListContext.Provider>

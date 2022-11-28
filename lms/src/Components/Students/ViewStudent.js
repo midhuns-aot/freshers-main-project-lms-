@@ -2,18 +2,30 @@ import React, {useContext } from "react";
 import Table from "react-bootstrap/esm/Table";
 //Importing Dashboard
 import Dashboard from "../Dashboard/dashboard";
-
 import { IoIosArrowBack } from "react-icons/io";
-
 //import Navigation Hook
 import { useNavigate } from "react-router-dom";
-//Importing StudentListArray 
-import { studentListContext } from '../../App';
+import {useParams} from 'react-router-dom';
 
-function ViewStudent({nameId}) {
+
+// Importing IssueBookListArray 
+import { issueBookListContext } from "../../App";
+// Importing StudentListArray 
+import { studentListContext } from '../../App';
+//Importing BookListArray 
+import { bookListContext } from "../../App";
+
+
+
+
+function ViewStudent() {
 
 const navigate = useNavigate();
 const [studentListArray] = useContext(studentListContext)
+const [issueBookListArray] =useContext(issueBookListContext);
+const [bookListArray] = useContext(bookListContext);
+
+const obj = useParams();  
 
   return (
     <div className="d-flex">
@@ -27,16 +39,23 @@ const [studentListArray] = useContext(studentListContext)
           <p><IoIosArrowBack className="Arrow-icon"  onClick = {() =>{
                   navigate("/students")
                 }} /> Students / {studentListArray.map((std)=>{
-                  console.log(nameId);
-                    if(std.nameId === nameId){
-                      <p>std.name</p>
+                    if(std.nameId === obj.studentId){
+                    return(std.name)
                     } 
                 })} </p>
         </div>
         <div className="student-name px-4 pt-3 pb-4" style={{ backgroundColor: "white" }}>
           <div className="name-email">
-          <h6>Nitha Samuel</h6>
-          <p>nithasamuel@gmail.com</p>
+          <h6>{studentListArray.map((std)=>{
+                    if(std.nameId === obj.studentId){
+                    return(std.name)
+                    } 
+                })}</h6>
+          <p>{studentListArray.map((std)=>{
+                    if(std.nameId === obj.studentId){
+                    return(std.email)
+                    } 
+                })}</p>
           </div>
           <div>
             <div className="d-flex gap-2"><p>Total Books issued</p> <p>5</p> </div>

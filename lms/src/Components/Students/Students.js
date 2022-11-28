@@ -82,7 +82,7 @@ function Students() {
                 <HiOutlineEye
                 style={{ color: "#7E7E7F" }}
                 onClick = {() =>{
-                  navigate("/students/view")
+                  navigate(`/students/${item.nameId}`)
                 }}
                 />
               </td>
