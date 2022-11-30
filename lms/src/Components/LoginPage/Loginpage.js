@@ -9,13 +9,30 @@ import logoo from "../../Images/Mainlogo-fill.png";
 function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const adminUser = { email: "admin@gmail.com", password: "lll" };
+  const adminUser = { email: "admin@gmail.com", password: "111" };
+  const studentUser = { email: "admin@gmail.com", password: "111" };
   const [errors, setErrors] = useState(false);
+
+  const [selectStudent, setSelectStudent] = useState(false);
 
   const navigate = useNavigate();
 
+  const onSubmit = (e) => {
+    console.log("onsubmit")
+    e.preventDefault();
+    if(!selectStudent){
+      submitHandler(e);
+    }
+   else if(selectStudent){
+      studentSubmitHandler(e)
+    }
+    else{
+      setErrors(true)
+    }
+  };
+
   //Authentication Process
-  const Login = () => {
+  const LoginAdmin = () => {
     console.log("Details");
     if (email === adminUser.email && password === adminUser.password) {
       console.log("Logged in SucessFully");
@@ -25,13 +42,32 @@ function Loginpage() {
   //Form  submittion
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("kerii");
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
-      Login();
+      LoginAdmin();
     }
   };
-  
+
+  //Student
+  const LoginStudent = () => {
+    console.log("Details");
+    if (email === studentUser.email && password === studentUser.password) {
+      console.log("Logged in SucessFully");
+      navigate("/students/mybook");
+    }
+  };
+
+  const studentSubmitHandler = (e) => {
+    e.preventDefault();
+    if (email.length === 0 || password.length === 0) {
+      setErrors(true);
+    } else {
+      LoginStudent();
+    }
+  };
+
   return (
     <div>
       <div className="container">
@@ -43,17 +79,33 @@ function Loginpage() {
           <h3>Login</h3>
           <p className="welcome">Welcome back! Please enter your details.</p>
           <div className="link-div">
-            <p>
-              <a className="adm" href="adm">
+            <p className="d-flex gap-5">
+              <label
+                className="adm"
+                onClick={() => {
+                  setSelectStudent(false);
+                }}
+                style={{
+                  borderBottom: !selectStudent ? "3px solid #ED7966" : "none",
+                }}
+              >
                 Admin
-              </a>
-              <a className="student" href="std">
+              </label>
+              <label
+                className="student"
+                onClick={() => {
+                  setSelectStudent(true);
+                }}
+                style={{
+                  borderBottom: selectStudent ? "3px solid #ED7966" : "none",
+                }}
+              >
                 Student
-              </a>
+              </label>
             </p>
           </div>
 
-          <form onSubmit={submitHandler}>
+          <form>
             <p className="login-elements ">
               Email
               <br />
@@ -88,7 +140,16 @@ function Loginpage() {
               ""
             )}
             <br />
-            <button type="submit">Login</button>
+            <button  onClick={onSubmit}>
+              Login
+            </button>
+            <br />
+            {selectStudent && (
+              <label className="register-text">
+                Don’t have an account?{" "}
+                <span style={{ color: "#ED7966" }}> Register</span>
+              </label>
+            )}
           </form>
         </div>
       </div>

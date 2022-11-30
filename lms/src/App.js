@@ -2,6 +2,7 @@ import Loginpage from './Components/LoginPage/Loginpage';
 import Issuedbooks from "./Components/IssuedBook/Issuedbooks";
 import Allbooks from './Components/Allbooks/Allbooks'
 import Students from './Components/Students/Students'
+import MyBook from './StudentComponents/MyBooks/myBook';
 import './App.css';
 import React, { useEffect } from 'react';
 import {  Route, Routes} from 'react-router-dom';
@@ -71,6 +72,7 @@ function App() {
         <Route path='/allbooks' element= { <Allbooks />} />
         <Route path='/students' element= { <Students />} />
         <Route path='/students/:studentId' element= {<ViewStudent />} />
+        <Route path='/students/mybook' element= {<MyBook />} />
 
         </Routes>
         </studentListContext.Provider>
