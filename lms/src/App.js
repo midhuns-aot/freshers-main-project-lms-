@@ -3,6 +3,7 @@ import Issuedbooks from "./Components/IssuedBook/Issuedbooks";
 import Allbooks from './Components/Allbooks/Allbooks'
 import Students from './Components/Students/Students'
 import MyBook from './StudentComponents/MyBooks/myBook';
+import StudentsAllBooks from './StudentComponents/AllBooks/studentsAllBooks';
 import './App.css';
 import React, { useEffect } from 'react';
 import {  Route, Routes} from 'react-router-dom';
@@ -73,6 +74,7 @@ function App() {
         <Route path='/students' element= { <Students />} />
         <Route path='/students/:studentId' element= {<ViewStudent />} />
         <Route path='/students/mybook' element= {<MyBook />} />
+        <Route path='/students/allbooks' element= {<StudentsAllBooks />} />
 
         </Routes>
         </studentListContext.Provider>

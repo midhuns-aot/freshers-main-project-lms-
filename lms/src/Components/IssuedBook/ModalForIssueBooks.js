@@ -77,7 +77,7 @@ function ModalIssueBook() {
                 placeholder="Select Book"
                 autoFocus
                 value={bookTitle}
-                required
+                required  
                 onChange={(e) =>setBookTitle(e.target.value )}
               >
                 <option>Select Book</option>

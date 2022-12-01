@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container-studentAllBook {
+    padding: 50px;
+    width: 100%;
+  }
+  
+  .header-of-studentAllBook {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #09174a;
+  }
+  
+  .table-responsive th {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+  }
+  
+  .table-responsive td {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #09174a;
+  }
+  
+  .slct-option {
+    border: none;
+  }
+  
+  .sort-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #282829;
+  }
+  .navbarss{
+      border: 2px solid #E3E3E3;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+  }
+  

@@ -147,7 +147,7 @@ function Loginpage() {
             {selectStudent && (
               <label className="register-text">
                 Don’t have an account?{" "}
-                <span style={{ color: "#ED7966" }}> Register</span>
+                <a className="registerLink" style={{ color: "#ED7966"}} href="hi"> Register</a>
               </label>
             )}
           </form>

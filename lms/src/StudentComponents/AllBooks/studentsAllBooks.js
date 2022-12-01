@@ -1,15 +1,17 @@
-import React from 'react'
-import DashboardStudent from '../DashBoardStudent/dashboardStudent'
+import React from "react";
+import DashboardStudent from "../DashBoardStudent/dashboardStudent";
+//Importing Table From Bootstrap
 import Table from "react-bootstrap/Table";
+import "./studentsAllBooks.css";
 
-function myBook() {
+function StudentsAllBooks() {
   return (
     <div className="d-flex">
       <div>
         <DashboardStudent />{" "}
       </div>
         <div className="container-studentAllBook">
-          <p className="header-of-studentAllBook">My Books</p>
+          <p className="header-of-studentAllBook">All Books</p>
           <hr />
           
           <div className="srch-cls">
@@ -29,13 +31,7 @@ function myBook() {
             </div>
           </div>
 
-          <div className="navbarss d-flex gap-4">
-            <p>Issued Books (6)</p>
-            <p>Pending to return (4)</p>
-            <p>Returned Books (2)</p>
-          </div>
-
-          <Table responsive className="mt-5">
+          <Table responsive>
             <thead>
               <tr>
                 <th>Book Title</th>
@@ -61,4 +57,5 @@ function myBook() {
     </div>
   );
 }
-export default myBook
+
+export default StudentsAllBooks;
