@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 //Importing Css
 import "./Loginpage.css";
 //Importing Hook For Navigation
 import { useNavigate } from "react-router-dom";
 //Importing Logo of LMS
 import logoo from "../../Images/Mainlogo-fill.png";
+
+// Importing StudentListArray
+import { studentListContext } from "../../App";
 
 function Loginpage() {
   const [email, setEmail] = useState("");
@@ -13,21 +16,20 @@ function Loginpage() {
   const studentUser = { email: "admin@gmail.com", password: "111" };
   const [errors, setErrors] = useState(false);
 
+  const [studentListArray] = useContext(studentListContext);
   const [selectStudent, setSelectStudent] = useState(false);
 
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
-    console.log("onsubmit")
+    console.log("onsubmit");
     e.preventDefault();
-    if(!selectStudent){
+    if (!selectStudent) {
       submitHandler(e);
-    }
-   else if(selectStudent){
-      studentSubmitHandler(e)
-    }
-    else{
-      setErrors(true)
+    } else if (selectStudent) {
+      studentSubmitHandler(e);
+    } else {
+      setErrors(true);
     }
   };
 
@@ -46,18 +48,18 @@ function Loginpage() {
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
-      console.log("LogAdmin")
+      console.log("LogAdmin");
       LoginAdmin();
     }
   };
 
   //Student
   const LoginStudent = () => {
-    console.log("Details");
-    if (email === studentUser.email && password === studentUser.password) {
-      console.log("Logged in SucessFully");
-      navigate("/students/mybook");
-    }
+    studentListArray.find((item) => {
+      if (email === item.email && password === item.passOne) {
+        navigate(`/students/mybook/${item.nameId}`);
+      }
+    });
   };
 
   const studentSubmitHandler = (e) => {
@@ -141,14 +143,19 @@ function Loginpage() {
               ""
             )}
             <br />
-            <button  onClick={onSubmit}>
-              Login
-            </button>
+            <button onClick={onSubmit}>Login</button>
             <br />
             {selectStudent && (
               <label className="register-text">
                 Don’t have an account?{" "}
-                <a className="registerLink" style={{ color: "#ED7966"}} href="hi"> Register</a>
+                <a
+                  className="registerLink"
+                  style={{ color: "#ED7966" }}
+                  href="hi"
+                >
+                  {" "}
+                  Register
+                </a>
               </label>
             )}
           </form>

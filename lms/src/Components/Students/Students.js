@@ -25,17 +25,6 @@ function Students() {
   const [searches, setSearches] = useState("")
 
 
-
-  // const tempArray = [{
-  //   bookTitle : bookTitle,
-  //   author,
-  //   issueDate, 
-  //   dueDate,
-  //   returnDate,
-  //   fine
-
-  // }]
-
   const navigate = useNavigate();
 
   return (

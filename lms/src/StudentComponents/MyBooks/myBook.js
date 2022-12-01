@@ -1,8 +1,49 @@
-import React from 'react'
+import React,  {useContext } from 'react'
 import DashboardStudent from '../DashBoardStudent/dashboardStudent'
 import Table from "react-bootstrap/Table";
 
-function myBook() {
+// Importing IssueBookListArray 
+import { issueBookListContext } from "../../App";
+// Importing StudentListArray 
+import { studentListContext } from '../../App';
+//Importing BookListArray 
+import { bookListContext } from "../../App";
+import {useParams} from 'react-router-dom';
+
+
+
+function MyBook() {
+
+  const [studentListArray] = useContext(studentListContext);
+  const [issueBookListArray] =useContext(issueBookListContext);
+  const [bookListArray] = useContext(bookListContext);
+
+  const tempStudentDetailsArr = issueBookListArray.map((item)=>{
+    let studentObj = {
+      key : item.key,
+      book : "",
+      author : "",
+      issueDate : item.issueDate,
+      dueDate : item.dueDate,
+    }
+    bookListArray.map((book)=>{
+      if(item.bookTitle === book.bookTitleId){
+        studentObj.book = book.name
+        studentObj.author = book.author
+      }
+    })
+
+    studentListArray.map((std)=>{
+      if(item.students === std.nameId){
+        studentObj.key = std.nameId
+      }
+    })
+
+    return studentObj
+
+  })
+  const obj = useParams(); 
+  
   return (
     <div className="d-flex">
       <div>
@@ -46,19 +87,26 @@ function myBook() {
                 <th>Fine (Rs. 10 per day) </th>
               </tr>
             </thead>
+            {tempStudentDetailsArr.map((list)=>{
+              if(list.key === obj.studentId){
+                             
+              return (            
             <tbody>
               <tr>
-                <td>It Start With Us</td>
-                <td>Colleen Hoover</td>
-                <td>10-11-2022 </td>
-                <td>18-11-2022</td>
-                <td>18-11-2022</td>
+                <td>{list.book}</td>
+                <td>{list.author}</td>
+                <td>{list.issueDate}</td>
+                <td>{list.dueDate}</td>
+                <td>-</td>
                 <td>0</td>
               </tr>
             </tbody>
+              )
+              }
+            })}
           </Table>
         </div>
     </div>
   );
 }
-export default myBook
+export default MyBook

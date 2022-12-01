@@ -73,7 +73,7 @@ function App() {
         <Route path='/allbooks' element= { <Allbooks />} />
         <Route path='/students' element= { <Students />} />
         <Route path='/students/:studentId' element= {<ViewStudent />} />
-        <Route path='/students/mybook' element= {<MyBook />} />
+        <Route path='/students/mybook/:studentIds' element= {<MyBook />} />
         <Route path='/students/allbooks' element= {<StudentsAllBooks />} />
 
         </Routes>
