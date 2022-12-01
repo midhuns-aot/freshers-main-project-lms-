@@ -46,6 +46,7 @@ function Loginpage() {
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
+      console.log("LogAdmin")
       LoginAdmin();
     }
   };

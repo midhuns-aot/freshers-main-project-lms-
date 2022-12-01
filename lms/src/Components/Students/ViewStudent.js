@@ -14,6 +14,7 @@ import { issueBookListContext } from "../../App";
 import { studentListContext } from '../../App';
 //Importing BookListArray 
 import { bookListContext } from "../../App";
+import { nanoid } from "nanoid";
 
 
 
@@ -25,7 +26,33 @@ const [studentListArray] = useContext(studentListContext)
 const [issueBookListArray] =useContext(issueBookListContext);
 const [bookListArray] = useContext(bookListContext);
 
-const obj = useParams();  
+  const tempStudentDetailsArr = issueBookListArray.map((item)=>{
+    let studentObj = {
+      viewStdnKey : nanoid(),
+      key : item.key,
+      book : "",
+      author : "",
+      issueDate : item.issueDate,
+      dueDate : item.dueDate,
+    }
+    bookListArray.map((book)=>{
+      if(item.bookTitle === book.bookTitleId){
+        studentObj.book = book.name
+        studentObj.author = book.author
+      }
+    })
+
+    studentListArray.map((std)=>{
+      if(item.students === std.nameId){
+        studentObj.key = std.nameId
+      }
+    })
+
+    return studentObj
+
+  })
+
+const obj = useParams(); 
 
   return (
     <div className="d-flex">
@@ -89,16 +116,23 @@ const obj = useParams();
                 </th>
               </tr>
             </thead>
+            {tempStudentDetailsArr.map((list)=>{
+              if(list.key === obj.studentId){
+                             
+              return (            
             <tbody>
               <tr>
-                <td>It Start With Us</td>
-                <td>Colleen Hoover</td>
-                <td>10-11-2022</td>
-                <td>18-11-2022</td>
+                <td>{list.book}</td>
+                <td>{list.author}</td>
+                <td>{list.issueDate}</td>
+                <td>{list.dueDate}</td>
                 <td>-</td>
                 <td>0</td>
               </tr>
             </tbody>
+              )
+              }
+            })}
           </Table>
         </div>
       </div>
