@@ -9,6 +9,7 @@ import { studentListContext } from '../../App';
 //Importing BookListArray 
 import { bookListContext } from "../../App";
 import {useParams} from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 
 
@@ -20,6 +21,7 @@ function MyBook() {
 
   const tempStudentDetailsArr = issueBookListArray.map((item)=>{
     let studentObj = {
+      keyId : nanoid(),
       key : item.key,
       book : "",
       author : "",
@@ -91,7 +93,7 @@ function MyBook() {
               if(list.key === obj.studentId){
                              
               return (            
-            <tbody>
+            <tbody key={list.keyId}>
               <tr>
                 <td>{list.book}</td>
                 <td>{list.author}</td>

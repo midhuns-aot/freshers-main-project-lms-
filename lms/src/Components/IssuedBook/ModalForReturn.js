@@ -10,7 +10,7 @@ import { issueBookListContext } from '../../App'
 
 import { bookListContext } from "../../App";
 
-function Returnbook({issueTitleId, issueBooksId}) {
+function Returnbook({issueTitleId, issueBooksId, tempIssueBookListArr}) {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -30,7 +30,6 @@ function Returnbook({issueTitleId, issueBooksId}) {
     })
   }
 
-
   // const calculateFine=()=>{ 
   //   const today = new Date();
   //   // let diffInTime = today.getTime() - dueDatecalc.getTime();
@@ -40,14 +39,27 @@ function Returnbook({issueTitleId, issueBooksId}) {
   //     setfine("-")
   //   }
 
-  
-
 
 
   //Removing Returned Books From The List
-  const removeReturnedBooks = () => {
+  // const removeReturnedBooks = () => {
     
-    setIssueBookListArray(issueBookListArray.filter((issueBookListArray) => issueBookListArray.issueId !==issueBooksId))
+  //   setIssueBookListArray(issueBookListArray.filter((issueBookListArray) => issueBookListArray.issueId !==issueBooksId))
+  // } 
+
+  // for(let i = 0; i <= tempIssueBookListArr.length; i++ ){
+  //   console.log(tempIssueBookListArr[i].keyId);
+
+  // }
+
+
+
+  const removeReturnedBooks = () => {
+    for(let i = 0; i <= tempIssueBookListArr.length; i++ ){
+      console.log("klai" +tempIssueBookListArr[i].keyId )
+      console.log("koi" + issueBooksId)
+    tempIssueBookListArr.filter((tempIssueBookListArr) => tempIssueBookListArr[i].keyId !==issueBooksId)
+    }
   } 
   
   return (
