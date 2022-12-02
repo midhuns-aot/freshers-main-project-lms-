@@ -36,19 +36,19 @@ function StudentsAllBooks() {
               <tr>
                 <th>Book Title</th>
                 <th>Author</th>
-                <th>Issue Date</th>
-                <th>Due Date</th>
-                <th>Return Date</th>
-                <th>Fine (Rs. 10 per day) </th>
+                <th>Language</th>
+                <th>Total Copies</th>
+                <th>Remaining</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>It Start With Us</td>
                 <td>Colleen Hoover</td>
-                <td>10-11-2022 </td>
-                <td>18-11-2022</td>
-                <td>18-11-2022</td>
+                <td>English</td>
+                <td>5</td>
+                <td>5</td>
                 <td>0</td>
               </tr>
             </tbody>

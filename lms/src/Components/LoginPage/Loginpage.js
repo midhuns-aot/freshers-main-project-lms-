@@ -13,7 +13,6 @@ function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const adminUser = { email: "admin@gmail.com", password: "111" };
-  const studentUser = { email: "admin@gmail.com", password: "111" };
   const [errors, setErrors] = useState(false);
 
   const [studentListArray] = useContext(studentListContext);
@@ -27,6 +26,7 @@ function Loginpage() {
     if (!selectStudent) {
       submitHandler(e);
     } else if (selectStudent) {
+      console.log("std submit")
       studentSubmitHandler(e);
     } else {
       setErrors(true);
@@ -56,8 +56,14 @@ function Loginpage() {
   //Student
   const LoginStudent = () => {
     studentListArray.find((item) => {
+      console.log(password)
+      console.log( item.passOne)
       if (email === item.email && password === item.passOne) {
+        console.log("final")
         navigate(`/students/mybook/${item.nameId}`);
+      }
+      else{
+        setErrors(true);
       }
     });
   };
@@ -67,6 +73,7 @@ function Loginpage() {
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
+      console.log("pre")
       LoginStudent();
     }
   };

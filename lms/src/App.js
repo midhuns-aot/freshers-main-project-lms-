@@ -72,13 +72,13 @@ function App() {
         {/* <Route path='/dashboard' element= {<Dashboard />} /> */}
         <Route path='/allbooks' element= { <Allbooks />} />
         <Route path='/students' element= { <Students />} />
-        <Route path='/students/:studentId' element= {<ViewStudent />} />
-        <Route path='/students/mybook/:studentIds' element= {<MyBook />} />
-        <Route path='/students/allbooks' element= {<StudentsAllBooks />} />
+        <Route path='/students/:studentId' exact element= {<ViewStudent />} />
+        <Route  path='/students/mybook/:studentId' exact element= {<MyBook />} />
+        <Route path='/students/allbooks/:studentId' element= {<StudentsAllBooks />} />
 
         </Routes>
         </studentListContext.Provider>
-        </issueBookListContext.Provider>
+        </issueBookListContext.Provider>  
         </bookListContext.Provider>
     </div>
 

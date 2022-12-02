@@ -25,9 +25,9 @@ function Dashboard() {
                     <Sidebar>
                         <Menu className='sidebar' style={{height: "100vh"}}>
                             <img src= {Whitelogo} alt="WhiteLogo" className='pt-4 ps-3' />
-                            <MenuItem routerLink={<Link to="/isuuedbooks" />} className='pt-4' > <BsCheck2Circle /> Issued Books</MenuItem>
-                            <MenuItem routerLink={<Link to="/allbooks" />} className='pt-3'> <IoBookSharp /> All Books</MenuItem>
-                            <MenuItem routerLink={<Link to="/students" />} className='pt-3'> <MdOutlinePeopleAlt /> Students</MenuItem>
+                            <MenuItem routerLink={<Link to="/isuuedbooks"/>} className='pt-4' > <BsCheck2Circle /> Issued Books</MenuItem>
+                            <MenuItem routerLink={<Link to="/allbooks"/>} className='pt-3'> <IoBookSharp /> All Books</MenuItem>
+                            <MenuItem routerLink={<Link to="/students"/>} className='pt-3'> <MdOutlinePeopleAlt /> Students</MenuItem>
                             <hr className='bottom-line' />
                         </Menu>
                     </Sidebar>
