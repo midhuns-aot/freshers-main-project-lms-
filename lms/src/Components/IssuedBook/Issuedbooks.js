@@ -17,6 +17,7 @@ import { bookListContext } from "../../App";
 import { studentListContext } from "../../App";
 
 import { nanoid } from "nanoid";
+import DateDiff from 'date-diff'
 
 function Issuedbooks() {
   const [issueBookListArray] = useContext(issueBookListContext);
@@ -31,7 +32,7 @@ function Issuedbooks() {
       student: "",
       issueDate: issue.issueDate,
       dueDate: issue.dueDate,
-      fine: "",
+      fine: issue.key ,
     };
     bookListArray.map((book) => {
       if (issue.bookTitle === book.bookTitleId) {
@@ -45,6 +46,17 @@ function Issuedbooks() {
         issueObj.student = std.name;
       }
     });
+
+      var date1 = new Date();
+      var date2 = new Date(issue.dueDate);
+      var diff = new DateDiff(date1, date2);
+      let Fine = Math.round(diff.days())*10
+      if(Fine > 0 ){
+      issueObj.fine = Fine
+    }
+    else{
+      issueObj.fine = 0
+    }
     return issueObj;
   });
 
@@ -88,7 +100,7 @@ function Issuedbooks() {
                   <td>{item.student}</td>
                   <td>{item.issueDate}</td>
                   <td>{item.dueDate}</td>
-                  <td>10</td>
+                  <td>{item.fine}</td>
                   <td>
                     <Returnbook
                       issueTitleId={item.bookTitleId}
