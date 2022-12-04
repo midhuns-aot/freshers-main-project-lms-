@@ -1,4 +1,4 @@
-import React, {useContext } from 'react'
+import React, {useContext, useState } from 'react'
 import DashboardStudent from '../DashBoardStudent/dashboardStudent'
 import Table from "react-bootstrap/Table";
 
@@ -11,6 +11,8 @@ import { bookListContext } from "../../App";
 import {useParams} from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
+import DateDiff from "date-diff";
+
 
 
 function MyBook() {
@@ -18,6 +20,8 @@ function MyBook() {
   const [studentListArray] = useContext(studentListContext);
   const [issueBookListArray] =useContext(issueBookListContext);
   const [bookListArray] = useContext(bookListContext);
+
+  const [searches, setSearches] = useState("");
 
   const tempStudentDetailsArr = issueBookListArray.map((item)=>{
     let studentObj = {
@@ -27,6 +31,7 @@ function MyBook() {
       author : "",
       issueDate : item.issueDate,
       dueDate : item.dueDate,
+      fine: item.key,
     }
     bookListArray.map((book)=>{
       if(item.bookTitle === book.bookTitleId){
@@ -40,6 +45,15 @@ function MyBook() {
         studentObj.key = std.nameId
       }
     })
+    var date1 = new Date();
+    var date2 = new Date(item.dueDate);
+    var diff = new DateDiff(date1, date2);
+    let Fine = Math.round(diff.days()) * 10;
+    if (Fine > 0) {
+      studentObj.fine = Fine;
+    } else {
+      studentObj.fine = 0;
+    }
 
     return studentObj
 
@@ -62,6 +76,8 @@ function MyBook() {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value={searches}
+              onChange={(e) => setSearches(e.target.value)}
             />
             <div>
             <label className="sort-text">Sort By :</label>
@@ -89,7 +105,21 @@ function MyBook() {
                 <th>Fine (Rs. 10 per day) </th>
               </tr>
             </thead>
-            {tempStudentDetailsArr.map((list)=>{
+            {tempStudentDetailsArr
+            .filter((value) => {
+              if (searches === "") {
+                return value;
+              } else if (
+                value.book.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              } else if (
+                value.author.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              }
+              return 0;
+            }).map((list)=>{
               if(list.key === obj.studentId){
                              
               return (            
@@ -100,7 +130,7 @@ function MyBook() {
                 <td>{list.issueDate}</td>
                 <td>{list.dueDate}</td>
                 <td>-</td>
-                <td>0</td>
+                <td>{list.fine}</td>
               </tr>
             </tbody>
               )

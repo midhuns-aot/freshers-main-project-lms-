@@ -1,4 +1,4 @@
-import React, {useContext } from "react";
+import React, {useContext, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 //Importing Dashboard
 import Dashboard from "../Dashboard/dashboard";
@@ -15,6 +15,7 @@ import { studentListContext } from '../../App';
 //Importing BookListArray 
 import { bookListContext } from "../../App";
 import { nanoid } from "nanoid";
+import DateDiff from "date-diff";
 
 
 
@@ -26,6 +27,9 @@ const [studentListArray] = useContext(studentListContext)
 const [issueBookListArray] =useContext(issueBookListContext);
 const [bookListArray] = useContext(bookListContext);
 
+const [searches, setSearches] = useState("")
+const obj = useParams(); 
+
   const tempStudentDetailsArr = issueBookListArray.map((item)=>{
     let studentObj = {
       viewStdnKey : nanoid(),
@@ -34,6 +38,8 @@ const [bookListArray] = useContext(bookListContext);
       author : "",
       issueDate : item.issueDate,
       dueDate : item.dueDate,
+      fine : item.fine,
+      totalFine : item.totalFine
     }
     bookListArray.map((book)=>{
       if(item.bookTitle === book.bookTitleId){
@@ -48,11 +54,36 @@ const [bookListArray] = useContext(bookListContext);
       }
     })
 
-    return studentObj
+    var date1 = new Date();
+    var date2 = new Date(item.dueDate);
+    var diff = new DateDiff(date1, date2);
+    let Fine = Math.round(diff.days()) * 10;
+    if (Fine > 0) {
+      studentObj.fine = Fine;
+    } else {
+      studentObj.fine = 0;
+    }
+   
+     return studentObj
 
   })
 
-const obj = useParams(); 
+
+  // const totalFine = issueBookListArray
+  // .filter((issued) => issued.students === obj.studentId && issued.fine >= 0)
+  // .reduce((acc, curr) => {
+  //   return acc + curr.fine;
+  // }, 0);
+
+
+  const totalBooks = issueBookListArray.filter((issued) => issued.students === obj.studentId);
+  console.log(totalBooks)
+
+  // const totalReturned = issueBookListArray.filter(
+  //   (issued) => issued.students === obj.studentId && issued.isReturned === true
+  // );
+
+
 
   return (
     <div className="d-flex">
@@ -85,7 +116,7 @@ const obj = useParams();
                 })}</p>
           </div>
           <div>
-            <div className="d-flex gap-2"><p>Total Books issued</p> <p>5</p> </div>
+            <div className="d-flex gap-2"><p>Total Books issued</p> <p>{totalBooks.length}</p> </div>
             <div className="d-flex gap-4"><p>Returned Books</p> <p>4</p> </div>
             <div className="d-flex gap-5"><p>Total Fine</p> <p>Rs. 70</p> </div>
           </div>
@@ -100,6 +131,8 @@ const obj = useParams();
               type="search"
               placeholder="Search by book title or author"
               aria-label="Search"
+              value={searches}
+            onChange={(e) => setSearches(e.target.value)}
             />
           </div>
           <Table hover>
@@ -116,7 +149,17 @@ const obj = useParams();
                 </th>
               </tr>
             </thead>
-            {tempStudentDetailsArr.map((list)=>{
+            {tempStudentDetailsArr.filter((value) => {
+            if (searches === "") {
+              return value;
+            } else if (value.book.toLowerCase().includes(searches.toLowerCase())) {
+              return value
+            }
+            else if(value.author.toLowerCase().includes(searches.toLowerCase())){
+              return value
+            }
+            return 0;
+            }).map((list)=>{
               if(list.key === obj.studentId){
                              
               return (            
@@ -127,7 +170,7 @@ const obj = useParams();
                 <td>{list.issueDate}</td>
                 <td>{list.dueDate}</td>
                 <td>-</td>
-                <td>0</td>
+                <td>{list.fine}</td>
               </tr>
             </tbody>
               )

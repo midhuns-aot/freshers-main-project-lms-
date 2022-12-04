@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 //Importing Css
 import "./Issuedbook.css";
 //Importing Table From Bootstrap
@@ -17,22 +17,25 @@ import { bookListContext } from "../../App";
 import { studentListContext } from "../../App";
 
 import { nanoid } from "nanoid";
-import DateDiff from 'date-diff'
+import DateDiff from "date-diff";
 
 function Issuedbooks() {
-  const [issueBookListArray] = useContext(issueBookListContext);
+  const [issueBookListArray, setIissueBookListArray] =
+    useContext(issueBookListContext);
   const [bookListArray] = useContext(bookListContext);
   const [studentListArray] = useContext(studentListContext);
+
+  const [searches, setSearches] = useState("");
 
   const tempIssueBookListArr = issueBookListArray.map((issue) => {
     let issueObj = {
       keyId: nanoid(),
       bookTitle: "",
-      bookTitleId :issue.key,
+      bookTitleId: issue.key,
       student: "",
       issueDate: issue.issueDate,
       dueDate: issue.dueDate,
-      fine: issue.key ,
+      fine: issue.key,
     };
     bookListArray.map((book) => {
       if (issue.bookTitle === book.bookTitleId) {
@@ -47,20 +50,17 @@ function Issuedbooks() {
       }
     });
 
-      var date1 = new Date();
-      var date2 = new Date(issue.dueDate);
-      var diff = new DateDiff(date1, date2);
-      let Fine = Math.round(diff.days())*10
-      if(Fine > 0 ){
-      issueObj.fine = Fine
-    }
-    else{
-      issueObj.fine = 0
+    var date1 = new Date();
+    var date2 = new Date(issue.dueDate);
+    var diff = new DateDiff(date1, date2);
+    let Fine = Math.round(diff.days()) * 10;
+    if (Fine > 0) {
+      issueObj.fine = Fine;
+    } else {
+      issueObj.fine = 0;
     }
     return issueObj;
   });
-
-
 
   return (
     <div className="d-flex">
@@ -77,6 +77,8 @@ function Issuedbooks() {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            value={searches}
+            onChange={(e) => setSearches(e.target.value)}
           />
           <ModalIssueBook />
         </div>
@@ -92,26 +94,41 @@ function Issuedbooks() {
               <th>Actions</th>
             </tr>
           </thead>
-          {tempIssueBookListArr.map((item) => {
-            return (
-              <tbody key={item.keyId}>
-                <tr>
-                  <td>{item.bookTitle}</td>
-                  <td>{item.student}</td>
-                  <td>{item.issueDate}</td>
-                  <td>{item.dueDate}</td>
-                  <td>{item.fine}</td>
-                  <td>
-                    <Returnbook
-                      issueTitleId={item.bookTitleId}
-                      issueBooksId={item.keyId}
-                      tempIssueBookListArr ={tempIssueBookListArr}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
+          {tempIssueBookListArr
+            .filter((value) => {
+              if (searches === "") {
+                return value;
+              } else if (
+                value.bookTitle.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              } else if (
+                value.student.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              }
+              return 0;
+            })
+            .map((item) => {
+              return (
+                <tbody key={item.keyId}>
+                  <tr>
+                    <td>{item.bookTitle}</td>
+                    <td>{item.student}</td>
+                    <td>{item.issueDate}</td>
+                    <td>{item.dueDate}</td>
+                    <td>{item.fine}</td>
+                    <td>
+                      <Returnbook
+                        issueTitleId={item.bookTitleId}
+                        issueBooksId={item.keyId}
+                        tempIssueBookListArr={tempIssueBookListArr}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
         </Table>
       </div>
     </div>

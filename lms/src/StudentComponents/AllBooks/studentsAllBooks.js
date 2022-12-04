@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import DashboardStudent from "../DashBoardStudent/dashboardStudent";
 //Importing Table From Bootstrap
 import Table from "react-bootstrap/Table";
@@ -8,8 +8,10 @@ import { bookListContext } from "../../App";
 //importing Logo Of Icon
 import { HiOutlineEye } from "react-icons/hi";
 
+
 function StudentsAllBooks() {
   const [bookListArray] = useContext(bookListContext);
+  const [searches, setSearches] = useState("");
   return (
     <div className="d-flex">
       <div>
@@ -26,6 +28,8 @@ function StudentsAllBooks() {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            value={searches}
+            onChange={(e) => setSearches(e.target.value)}
           />
           <div>
             <label className="sort-text">Sort By :</label>
@@ -47,7 +51,21 @@ function StudentsAllBooks() {
               <th>Action</th>
             </tr>
           </thead>
-          {bookListArray.map((book) => {
+          {bookListArray
+            .filter((value) => {
+              if (searches === "") {
+                return value;
+              } else if (
+                value.name.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              } else if (
+                value.author.toLowerCase().includes(searches.toLowerCase())
+              ) {
+                return value;
+              }
+              return 0;
+            }).map((book) => {
             return (
               <tbody key={book.bookId}>
                 <tr>
