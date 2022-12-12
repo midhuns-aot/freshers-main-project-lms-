@@ -22,6 +22,7 @@ function MyBook() {
   const [bookListArray] = useContext(bookListContext);
 
   const [searches, setSearches] = useState("");
+  const [sortName, setsortName] = useState("");
 
   const tempStudentDetailsArr = issueBookListArray.map((item)=>{
     let studentObj = {
@@ -59,6 +60,28 @@ function MyBook() {
 
   })
   const obj = useParams(); 
+
+
+//Sorting
+  
+  const handleMybooksSort = (e) => {
+    setsortName(e.target.value);
+
+    if (sortName === "newest") {
+      console.log(sortName);
+      issueBookListArray.sort(
+        (objA, objB) => new Date(objA.issueDate) - new Date(objB.issueDate)
+      );
+    }
+
+    if (sortName === "oldest") {
+      issueBookListArray.sort(
+        (objA, objB) => new Date(objB.issueDate) - new Date(objA.issueDate)
+      );
+    }
+  };
+
+
   
   return (
     <div className="d-flex">
@@ -81,9 +104,9 @@ function MyBook() {
             />
             <div>
             <label className="sort-text">Sort By :</label>
-            <select className="slct-option">
-                <option>Issue Date</option>
-                <option>Due Date</option>
+            <select className="slct-option"onClick={handleMybooksSort}>
+                <option value = "newest">Newest</option>
+                <option value = "oldest">Oldest</option>
             </select>
             </div>
           </div>

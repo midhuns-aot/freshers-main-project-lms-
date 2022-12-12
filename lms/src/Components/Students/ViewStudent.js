@@ -38,8 +38,9 @@ const obj = useParams();
       author : "",
       issueDate : item.issueDate,
       dueDate : item.dueDate,
+      returnDate: item.returnDate,
       fine : item.fine,
-      totalFine : item.totalFine
+      totalFine : item.key
     }
     bookListArray.map((book)=>{
       if(item.bookTitle === book.bookTitleId){
@@ -63,11 +64,38 @@ const obj = useParams();
     } else {
       studentObj.fine = 0;
     }
-   
+
+    // let tFines = 0;
+    // studentListArray.map((std)=>{
+    //   if(std.nameId === obj.studentId){
+    //     for(let i = 0; studentObj[i]<0; i++){
+    //       tFines = tFines + studentObj.fine[i]
+    //     }
+       
+       
+    //   }
+    //   studentObj.totalFine = tFines;
+    //    console.log(tFines)
+    //   })
+
+
+      console.log(studentObj.returnDate);
      return studentObj
 
   })
+  
 
+  // const totalFine = () => {
+  //   let tFines = 0; 
+  //   studentListArray.map((std)=>{
+  //   if(std.nameId === obj.studentId){
+     
+  //   }
+  //   })
+  //   console.log("Hii" + tFines);
+  //   return tFines
+  //   // setIissueBookListArray([...issueBookListArray, tFines]);
+  // }
 
   // const totalFine = issueBookListArray
   // .filter((issued) => issued.students === obj.studentId && issued.fine >= 0)
@@ -77,7 +105,7 @@ const obj = useParams();
 
 
   const totalBooks = issueBookListArray.filter((issued) => issued.students === obj.studentId);
-  console.log(totalBooks)
+  // console.log(totalBooks)
 
   // const totalReturned = issueBookListArray.filter(
   //   (issued) => issued.students === obj.studentId && issued.isReturned === true
@@ -118,12 +146,15 @@ const obj = useParams();
           <div>
             <div className="d-flex gap-2"><p>Total Books issued</p> <p>{totalBooks.length}</p> </div>
             <div className="d-flex gap-4"><p>Returned Books</p> <p>4</p> </div>
-            <div className="d-flex gap-5"><p>Total Fine</p> <p>Rs. 70</p> </div>
+            <div className="d-flex gap-5"><p>Total Fine</p> 
+            {tempStudentDetailsArr.map((item)=>{
+             <p> item.totalFine </p>
+            })} </div>
           </div>
         </div>
         </div>
         <div className="table-contents" style={{ backgroundColor: "white" }}>
-          <h5>Issued Books</h5>
+          <h5>Issued Books({totalBooks.length})</h5>
           <div className="search">
             <input
               className="form-control my-2"
@@ -169,7 +200,7 @@ const obj = useParams();
                 <td>{list.author}</td>
                 <td>{list.issueDate}</td>
                 <td>{list.dueDate}</td>
-                <td>-</td>
+                <td> {list.returnDate ? list.returnDate : "-"}</td>
                 <td>{list.fine}</td>
               </tr>
             </tbody>

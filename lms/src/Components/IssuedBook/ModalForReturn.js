@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 // Import Buttons From Bootstrap
 import Button from 'react-bootstrap/Button';
 // Modal From Bootstrap
@@ -10,7 +10,7 @@ import { issueBookListContext } from '../../App'
 
 import { bookListContext } from "../../App";
 
-function Returnbook({issueTitleId, issueBooksId, tempIssueBookListArr}) {
+function Returnbook({issueTitleId}) {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -26,45 +26,65 @@ function Returnbook({issueTitleId, issueBooksId, tempIssueBookListArr}) {
       if(item.bookTitleId === issueTitleId){
         item.remaining = ++item.remaining;
       }
-      return (count)  
+      
+      //console.log(retrnDate)
+      return (count)
     })
   }
 
-  // const calculateFine=()=>{ 
-  //   const today = new Date();
-  //   // let diffInTime = today.getTime() - dueDatecalc.getTime();
-  //   let Difference = Math.floor((today.getTime() - dueDatecalc.getTime())/ (1000 * 3600 * 24))
-  //   setfine(Math.round(Difference*10))
-  //   if (fine < 0){
-  //     setfine("-")
+
+  const thisMonth = new Date().getMonth() + 1;
+  useEffect(() => {
+    setIssueBookListArray(
+      issueBookListArray.map((book) => {
+        if (book.key === issueTitleId) {
+          return {
+            ...book,
+            isReturned: true,
+            returnDate:
+              new Date().getFullYear() +
+              "-" +
+              thisMonth +
+              "-" +
+              new Date().getDate(),
+          };
+        }
+        return book;
+      })
+    );
+  }, []);
+  
+
+
+
+  // let setReturnClick = tempIssueBookListArr.map((item)=>{ 
+  //   if(item.keyId ===returnClickId )
+  //   item.returnClick = true
+   
+  // })
+  
+
+  // let setReturnClick = ()=>{
+  //   for(let i = 0; i<tempIssueBookListArr.length; i++){
+  //     if(tempIssueBookListArr[i].keyId === returnClickId){
+  //       tempIssueBookListArr[i].returnClick = true
+  //     }
+  //     console.log(tempIssueBookListArr[i].keyId)
   //   }
-
-
-
-  //Removing Returned Books From The List
-  // const removeReturnedBooks = () => {
-    
-  //   setIssueBookListArray(issueBookListArray.filter((issueBookListArray) => issueBookListArray.issueId !==issueBooksId))
-  // } 
-
-  // for(let i = 0; i <= tempIssueBookListArr.length; i++ ){
-  //   console.log(tempIssueBookListArr[i].keyId);
-
   // }
 
 
-
-  const removeReturnedBooks = () => {
-    for(let i = 0; i <= tempIssueBookListArr.length; i++ ){
-      console.log("klai" +tempIssueBookListArr[i].keyId )
-      console.log("koi" + issueBooksId)
-    tempIssueBookListArr.filter((tempIssueBookListArr) => tempIssueBookListArr[i].keyId !==issueBooksId)
-    }
-  } 
+  // const removeReturnedBooks = () => {
+  //   for(let i = 0; i <= tempIssueBookListArr.length; i++ ){
+  //     console.log("klai" +tempIssueBookListArr[i].keyId )
+  //     console.log("koi" + issueBooksId)
+  //   tempIssueBookListArr.filter((tempIssueBookListArr) => tempIssueBookListArr[i].keyId !==issueBooksId)
+  //   }
+  // } 
   
   return (
     <>
-      <MdOutlineAssignmentReturn className='edit'  onClick={()=> {handleShow()}}/>
+      <MdOutlineAssignmentReturn className='edit'  onClick={()=> {handleShow(); console.log("clickeed")}}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className='border border-0' closeButton>
           <Modal.Title style={{paddingLeft:"150px"}}>Mark as returned</Modal.Title>
@@ -75,7 +95,7 @@ function Returnbook({issueTitleId, issueBooksId, tempIssueBookListArr}) {
           <Button className='noButton' variant="outline-secondary" onClick={handleClose}>
             No
           </Button> 
-          <Button className='yesButton' onClick={()=> {handleClose();countRemaining();removeReturnedBooks()}}>
+          <Button className='yesButton' onClick={()=> {handleClose();countRemaining()}}>
             Yes
           </Button>
           </div>

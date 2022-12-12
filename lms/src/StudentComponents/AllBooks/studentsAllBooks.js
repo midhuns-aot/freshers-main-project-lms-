@@ -6,12 +6,39 @@ import "./studentsAllBooks.css";
 //Importing BookListArray
 import { bookListContext } from "../../App";
 //importing Logo Of Icon
-import { HiOutlineEye } from "react-icons/hi";
+import { HiOutlineEye } from "react-icons/hi";//Importing IssueBookListArray
 
 
 function StudentsAllBooks() {
   const [bookListArray] = useContext(bookListContext);
   const [searches, setSearches] = useState("");
+  const [sortName, setsortName] = useState("");
+
+
+
+
+  const handleSort=(e)=>{
+    setsortName(e.target.value)
+    console.log(sortName)
+    if(sortName === "author"){
+      bookListArray.sort(function (a, b) {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        return 0;
+      })
+    }
+    if(sortName === "bookTitle"){
+      bookListArray.sort(function (a, b) {
+        if (a.author.toLowerCase() < b.author.toLowerCase()) return -1;
+        if (a.author.toLowerCase() > b.author.toLowerCase()) return 1;
+        return 0;
+      })
+    }
+  }
+
+
+
+
   return (
     <div className="d-flex">
       <div>
@@ -33,9 +60,9 @@ function StudentsAllBooks() {
           />
           <div>
             <label className="sort-text">Sort By :</label>
-            <select className="slct-option">
-              <option>Issue Date</option>
-              <option>Due Date</option>
+            <select className="slct-option" onClick={handleSort}>
+              <option value="bookTitle">Book Title</option>
+              <option value="author">Author</option>
             </select>
           </div>
         </div>

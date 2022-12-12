@@ -24,6 +24,7 @@ function Issuedbooks() {
     useContext(issueBookListContext);
   const [bookListArray] = useContext(bookListContext);
   const [studentListArray] = useContext(studentListContext);
+  //  const [returnClick, setReturnClick] = useState(false);
 
   const [searches, setSearches] = useState("");
 
@@ -36,6 +37,8 @@ function Issuedbooks() {
       issueDate: issue.issueDate,
       dueDate: issue.dueDate,
       fine: issue.key,
+      returnClick : issue.returnClick
+      
     };
     bookListArray.map((book) => {
       if (issue.bookTitle === book.bookTitleId) {
@@ -62,7 +65,19 @@ function Issuedbooks() {
     return issueObj;
   });
 
-  return (
+
+  // const totalFine = () => {
+  //   let tFines = 0; 
+  //   for(let i = 0; i <tempIssueBookListArr.length; i++){
+  //     tFines = tFines + tempIssueBookListArr[i].fine
+  //   }
+  //   return tFines
+  //   // setIissueBookListArray([...issueBookListArray, tFines]);
+  // }
+//  console.log(tempIssueBookListArr)
+ 
+
+return (
     <div className="d-flex">
       <div>
         <Dashboard />
@@ -110,6 +125,7 @@ function Issuedbooks() {
               return 0;
             })
             .map((item) => {
+              if(item.returnClick === false){
               return (
                 <tbody key={item.keyId}>
                   <tr>
@@ -120,14 +136,13 @@ function Issuedbooks() {
                     <td>{item.fine}</td>
                     <td>
                       <Returnbook
-                        issueTitleId={item.bookTitleId}
-                        issueBooksId={item.keyId}
-                        tempIssueBookListArr={tempIssueBookListArr}
+                        issueTitleId={item.bookTitleId}                        
                       />
                     </td>
                   </tr>
                 </tbody>
               );
+            }
             })}
         </Table>
       </div>

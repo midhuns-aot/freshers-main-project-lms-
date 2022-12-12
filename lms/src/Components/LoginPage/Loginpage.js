@@ -9,6 +9,9 @@ import logoo from "../../Images/Mainlogo-fill.png";
 // Importing StudentListArray
 import { studentListContext } from "../../App";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Loginpage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +22,7 @@ function Loginpage() {
   const [selectStudent, setSelectStudent] = useState(false);
 
   const navigate = useNavigate();
+  const sapleToo = () => toast("Wow so easy!");
 
   const onSubmit = (e) => {
     console.log("onsubmit");
@@ -26,7 +30,6 @@ function Loginpage() {
     if (!selectStudent) {
       submitHandler(e);
     } else if (selectStudent) {
-      console.log("std submit")
       studentSubmitHandler(e);
     } else {
       setErrors(true);
@@ -38,13 +41,13 @@ function Loginpage() {
     console.log("Details");
     if (email === adminUser.email && password === adminUser.password) {
       console.log("Logged in SucessFully");
+      sapleToo()
       navigate("/isuuedbooks");
     }
   };
   //Form  submittion
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("kerii");
     if (email.length === 0 || password.length === 0) {
       setErrors(true);
     } else {
@@ -168,6 +171,7 @@ function Loginpage() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -30,6 +30,7 @@ function ModalIssueBook() {
   const [students, setStudents] = useState("");
   const [issueDate, setIssueDate] = useState();
   const [ dueDate, setDueDate] = useState();
+  
   let count;
   
 
@@ -40,6 +41,7 @@ function ModalIssueBook() {
       students: students,
       issueDate: issueDate,
       dueDate: dueDate,
+      returnClick : false
     };
     setIissueBookListArray([...issueBookListArray, newData]);
     setBookTitle("");
